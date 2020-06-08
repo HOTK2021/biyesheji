@@ -18,7 +18,7 @@ public class UserController {
 	@Autowired
 	T_userService ts;
 	
-	
+
 	@RequestMapping("userLogin")
 	@ResponseBody
 	public Object[] userLogin(@RequestParam("username")String username,
@@ -52,5 +52,9 @@ public class UserController {
 		Object[] param=(Object[])session.getAttribute("LoginParams");
 		System.out.println(param);
 		return param;
+	}
+	@RequestMapping("/login")
+	public String login(){
+		return "login";
 	}
 }
