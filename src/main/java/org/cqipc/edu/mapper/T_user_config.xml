@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cqipc.edu.dao.T_user_configDao">
+	<select id="findUserConfigByUid" resultType="T_user_config">
+		select * from t_user_config where user_id=#{userId}
+	</select>
+</mapper>

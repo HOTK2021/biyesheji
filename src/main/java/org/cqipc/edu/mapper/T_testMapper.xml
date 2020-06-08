@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cqipc.edu.dao.T_testDao">
+	<select id="selectTestAll" resultType="T_test">
+		select * from t_test
+		<if test='keyWord!="" or keyWord!=null'>
+   			where FIELD2 LIKE '%${keyWord}%'
+    	</if>
+    	limit #{page},#{limit}
+	</select>
+	<select id="queryCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count(*) from t_test
+        <if test='_parameter != "" and _parameter != null'>
+            where FIELD2 LIKE '%${_parameter}%'
+        </if>
+	</select>
+</mapper>

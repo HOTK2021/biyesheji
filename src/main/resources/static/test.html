@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+<div style="margin-top: 17px;margin-left: 1103px;">
+    <span>key：</span><input type="text" style="height: 27px;width: 220px;" id="sear1" placeholder="请输入key模糊查询"/>
+</div>
+ 
+<div class="layui-card-body">
+    <table class="layui-hide" id="test"></table>
+</div>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+    layui.use('table', function(){
+        var kw='';
+        addData(kw);
+    });
+function addData(kwx){
+    var table = layui.table;
+    table.render({
+        elem: '#test'
+        ,url:'showData?keyWord='+kwx
+        ,limit:11 //默认为10
+        ,cols: [[
+            {field:'id', title: '编号', sort: true} //sort：true页面可进行排序操作
+            ,{field:'field1', title: '字段1'}
+            ,{field:'field2', title: '字段2', sort: true}
+            ,{field:'field3',  title: '字段3'}
+            ,{field:'create_time',  title: '时间 ', sort: true}
+        ]]
+        ,page: true
+        ,done:function(res, curr, count){
+            //数据的回调用，可不写
+        }
+    });
+}
+    $("#sear1").keyup(function(event){
+            if(event.keyCode ==13){
+             var keyWord=$("#sear1").val();
+                addData(keyWord);
+            }
+        });
+</script>
+</body>
+</html>
