@@ -38,7 +38,7 @@ public class UserController {
 		if(param[0]!="error") {
 			model.addAttribute("LoginParams", param);
 			par[0]="ok";
-			return par; 
+			return par;
 		}else {
 			par[0]="用户名或者密码错误";
 			return par;
