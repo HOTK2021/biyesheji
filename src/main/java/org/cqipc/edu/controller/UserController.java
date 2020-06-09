@@ -103,7 +103,7 @@ public class UserController {
 			return "no";
 		}
 	}
-	@RequestMapping("selectDeptAll")
+	@RequestMapping("/electDeptAll")
 	@ResponseBody
 	public List<T_dept> selectDeptAll(){
 		return ts.selectDeptAll();
