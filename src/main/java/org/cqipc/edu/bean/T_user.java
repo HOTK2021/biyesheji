@@ -17,6 +17,11 @@ public class T_user {
 	private String description;
 	private String avatar;
 	private int age;
+	private int lifetime;
+
+
+
+
 	public BigInteger getUser_id() {
 		return user_id;
 	}
@@ -101,9 +106,15 @@ public class T_user {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	public int getLifetime() {
+		return lifetime;
+	}
+	public void setLifetime(int lifetime) {
+		this.lifetime = lifetime;
+	}
 	public T_user(BigInteger user_id, String username, String password, BigInteger dept_id, String email, String mobile, int status,
 			String create_time, String modify_time, String last_login_time, String ssex, String description,
-			String avatar, int age) {
+			String avatar, int age,int lifetime) {
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
@@ -118,10 +129,11 @@ public class T_user {
 		this.description = description;
 		this.avatar = avatar;
 		this.age = age;
+		this.lifetime=lifetime;
 	}
 	public T_user(String username, String password, BigInteger dept_id, String email, String mobile, int status,
 			String create_time, String modify_time, String last_login_time, String ssex, String description,
-			String avatar, int age) {
+			String avatar, int age,int lifetime) {
 		this.username = username;
 		this.password = password;
 		this.dept_id = dept_id;
@@ -135,6 +147,7 @@ public class T_user {
 		this.description = description;
 		this.avatar = avatar;
 		this.age = age;
+		this.lifetime=lifetime;
 	}
 	public T_user() {
 	}
@@ -143,6 +156,6 @@ public class T_user {
 		return "T_user [user_id=" + user_id + ", username=" + username + ", password=" + password + ", dept_id="
 				+ dept_id + ", email=" + email + ", mobile=" + mobile + ", status=" + status + ", create_time="
 				+ create_time + ", modify_time=" + modify_time + ", last_login_time=" + last_login_time + ", ssex="
-				+ ssex + ", description=" + description + ", avatar=" + avatar + ", age=" + age + "]";
+				+ ssex + ", description=" + description + ", avatar=" + avatar + ", age=" + age +  ", lifetime=" + lifetime +"]";
 	}
 }

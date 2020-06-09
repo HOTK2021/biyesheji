@@ -3,17 +3,8 @@ package org.cqipc.edu.service.impl;
 import java.math.BigInteger;
 import java.util.List;
 
-import org.cqipc.edu.bean.T_menu;
-import org.cqipc.edu.bean.T_role;
-import org.cqipc.edu.bean.T_user;
-import org.cqipc.edu.bean.T_user_config;
-import org.cqipc.edu.bean.T_user_role;
-import org.cqipc.edu.dao.T_menuDao;
-import org.cqipc.edu.dao.T_roleDao;
-import org.cqipc.edu.dao.T_role_menuDao;
-import org.cqipc.edu.dao.T_userDao;
-import org.cqipc.edu.dao.T_user_configDao;
-import org.cqipc.edu.dao.T_user_roleDao;
+import org.cqipc.edu.bean.*;
+import org.cqipc.edu.dao.*;
 import org.cqipc.edu.service.T_userService;
 import org.cqipc.edu.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +23,14 @@ public class T_userServiceImpl implements T_userService {
 	T_role_menuDao trm;
 	@Autowired(required = false)
 	T_menuDao tm;
+	@Autowired(required = false)
+	T_deptDao dd;
 	@Override
 	//用户登录的方法
 	public Object[] Login(String username, String password) {
 		//根据用户名和密码查询用户对象
 		T_user user=tu.userLogin(username, MD5.getMd5(password));
-		System.out.println(user);
+		System.out.println();
 		System.out.println("1");
 		if(user!=null) {
 			//根据用户ID查询用户配置信息对象
@@ -50,10 +43,25 @@ public class T_userServiceImpl implements T_userService {
 			List<BigInteger> ids=trm.findRoleMenuByRid(role.getRole_id());
 			//根据所有的权限ID查询所有的权限对象
 			List<T_menu> list=tm.findMenuByMid(ids);
-			return new Object[] {user,userConfig};
+			if(user.getStatus()==1){
+				return new Object[] {user,userConfig};
+			}else{
+				return  new Object[] {"not"};
+			}
 		}else {
 			return new Object[] {"error"};
 		}
 	}
+
+	@Override
+	public int adduser(T_user t_user) {
+		return tu.adduser(t_user);
+	}
+
+	@Override
+	public List<T_dept> selectDeptAll() {
+		return dd.selectDeptAll();
+	}
+
 
 }
