@@ -104,7 +104,7 @@ function selectDept() {
         url:"/selectDeptAll",
         dataType:"json",
         success:function (data) {
-            dept.empty()
+            dept.empty();
             dept.append("<option value='-1'>请选择部门</option>")
             for (var i=0;i<data.length;i++){
                 dept.append("<option value='data[i].dept_id'>data[i].dept_name</option>")
