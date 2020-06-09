@@ -3,6 +3,7 @@ package org.cqipc.edu.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.cqipc.edu.service.T_userService;
+import org.cqipc.edu.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,7 @@ public class UserController {
 		 * 值之前通过request get出session
 		 * */
 		System.out.println(username);
+		System.out.println(MD5.getMd5(password));
 		Object[] param=ts.Login(username, password);
 		Object[] par=new Object[1];
 		request.getSession();
