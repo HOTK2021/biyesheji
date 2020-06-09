@@ -43,13 +43,13 @@ public class T_userServiceImpl implements T_userService {
 			//根据用户ID查询用户配置信息对象
 			T_user_config userConfig=tc.findUserConfigByUid(user.getUser_id());
 			//根据用户ID查询用户权限ref对象
-		//	T_user_role userRole=to.findRoleByUid(user.getUser_id());
+			T_user_role userRole=to.findRoleByUid(user.getUser_id());
 			//根据用户的权限ID查询权限对象
-		//	T_role role=rd.findRoleByRid(userRole.getRole_id());
+			T_role role=rd.findRoleByRid(userRole.getRole_id());
 			//根据权限id查询权限下所有对应的权限ID
-		//	List<BigInteger> ids=trm.findRoleMenuByRid(role.getRole_id());
+			List<BigInteger> ids=trm.findRoleMenuByRid(role.getRole_id());
 			//根据所有的权限ID查询所有的权限对象
-		//	List<T_menu> list=tm.findMenuByMid(ids);
+			List<T_menu> list=tm.findMenuByMid(ids);
 			return new Object[] {user,userConfig};
 		}else {
 			return new Object[] {"error"};
