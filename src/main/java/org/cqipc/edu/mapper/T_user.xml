@@ -6,4 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userLogin" resultType="T_user">
 		select * from t_user where username=#{username} and password=#{password}
 	</select>
+	<select id="selectUser" resultType="T_user">
+		select t.user_id as"user_id" , t.username as "username",tld.totalage as "totalage",
+			   tld.overage as "overage" from t_user t,t_mingjie_lifeanddie tld
+			   where t.user_id=tld.userid
+	</select>
+	<insert id="adduser" >
+		insert into t_user values(null,#{username},#{password},#{dept_id},#{email},#{mobile},#{status},
+		#{create_time},#{modify_time},#{last_login_time},#{ssex},#{description},#{avatar},#{age},#{lifetime}
+		)
+	</insert>
 </mapper>

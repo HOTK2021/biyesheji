@@ -2,6 +2,12 @@ package org.cqipc.edu.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
+
+import javafx.scene.input.DataFormat;
+import org.apache.ibatis.annotations.Param;
+import org.cqipc.edu.bean.T_dept;
+import org.cqipc.edu.bean.T_user;
 import org.cqipc.edu.service.T_userService;
 import org.cqipc.edu.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 
 @Controller
 @SessionAttributes("LoginParams")
 public class UserController {
-	@Autowired
+	@Autowired(required = false)
 	T_userService ts;
 	
 
@@ -37,12 +48,15 @@ public class UserController {
 		Object[] param=ts.Login(username, password);
 		Object[] par=new Object[1];
 		request.getSession();
-		if(param[0]!="error") {
-			model.addAttribute("LoginParams", param);
-			par[0]="ok";
+		if(param[0]=="error") {
+			par[0]="用户名或者密码错误";
+			return par;
+		}else if(param[0]=="not"){
+			par[0]="您不是公职人员，不能登录！";
 			return par;
 		}else {
-			par[0]="用户名或者密码错误";
+			model.addAttribute("LoginParams", param);
+			par[0]="ok";
 			return par;
 		}
 	}
@@ -55,6 +69,46 @@ public class UserController {
 		System.out.println(param);
 		return param;
 	}
+
+	@RequestMapping("addduser")
+	@ResponseBody
+	public String adduser(
+			T_user t_user
+//			@RequestParam("username")String username,
+//			@RequestParam("password")String password,
+//			@RequestParam("dept_id") BigInteger dept_id,
+//			@RequestParam("email")String email,
+//			@RequestParam("mobile")String mobile,
+//			@RequestParam("status")int status,
+//			@RequestParam("create_time")String create_time,
+//			@RequestParam("modify_time")String modify_time,
+//			@RequestParam("last_login_time")String last_login_time,
+//			@RequestParam("ssex")String ssex,
+//			@RequestParam("description")String description,
+//			@RequestParam("avatar")String avatar,
+//			@RequestParam("age")int age,
+//			@RequestParam("lifetime")int lifetime
+			){
+		//T_user t_user=new T_user(username,password,dept_id,email,mobile,status,create_time,modify_time,last_login_time,
+		//		ssex,description,avatar,age,lifetime);
+		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+
+		T_user t_user1=new T_user("张三","12323",BigInteger.valueOf(5),"1","12312",1,data,data,data,
+				"0","1","2",12,99);
+		System.out.println(t_user1);
+		if(ts.adduser(t_user1)>0){
+			System.out.println(t_user1);
+			return "ok";
+		}else {
+			return "no";
+		}
+	}
+	@RequestMapping("selectDeptAll")
+	@ResponseBody
+	public List<T_dept> selectDeptAll(){
+		return ts.selectDeptAll();
+	}
+
 	@RequestMapping("/login")
 	public String login(){
 		return "login";
