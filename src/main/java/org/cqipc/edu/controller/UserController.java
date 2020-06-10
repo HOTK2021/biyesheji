@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -70,7 +72,7 @@ public class UserController {
 		return param;
 	}
 
-	@RequestMapping("addduser")
+	@RequestMapping("/adduser")
 	@ResponseBody
 	public String adduser(
 			T_user t_user
@@ -91,10 +93,14 @@ public class UserController {
 			){
 		//T_user t_user=new T_user(username,password,dept_id,email,mobile,status,create_time,modify_time,last_login_time,
 		//		ssex,description,avatar,age,lifetime);
-		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
+		//将 密码进行MD5加密
+		String pwd=t_user.getPassword();
+		t_user.setPassword(MD5.getMd5(pwd));
+
+		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 		T_user t_user1=new T_user("张三","12323",BigInteger.valueOf(5),"1","12312",1,data,data,data,
-				"0","1","2",12,99);
+				"0","1","2",12);
 		System.out.println(t_user1);
 		if(ts.adduser(t_user1)>0){
 			System.out.println(t_user1);
@@ -103,11 +109,32 @@ public class UserController {
 			return "no";
 		}
 	}
-	@RequestMapping("/selectDeptAll")
+	@RequestMapping("selectDeptAll")
 	@ResponseBody
 	public List<T_dept> selectDeptAll(){
 		return ts.selectDeptAll();
 	}
+
+	@RequestMapping("/selectUserDie")
+	@ResponseBody
+	public List<T_user> selectUserDie(){
+		return ts.selectUserDie();
+	}
+
+	@RequestMapping("/selectUserInfoAll")
+	@ResponseBody
+	public Map<String,Object> selectUserInfoAll(@RequestParam(required = false,defaultValue = "1")int page,
+												@RequestParam(required = false,defaultValue = "10")int limit){
+			List<T_user> list=ts.selectUserAll(page,limit);
+			int count=ts.selectUserCount();
+			Map<String,Object> map=new HashMap<String, Object>();
+			map.put("code",0);
+			map.put("msg","");
+			map.put("count",count);
+			map.put("data",list);
+	return 	map;
+	}
+
 
 	@RequestMapping("/login")
 	public String login(){

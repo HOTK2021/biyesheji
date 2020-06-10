@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cqipc.edu.dao.T_mingjie_lifeanddieDao">
+    <insert id="addLifeAndDie">
+        insert into t_mingjie_lifeanddie values(null,#{userId},#{createTime},#{age},#{totalAge},#{overAge},#{statu})
+    </insert>
+</mapper>

@@ -3,6 +3,7 @@ package org.cqipc.edu.service.impl;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.cqipc.edu.bean.*;
 import org.cqipc.edu.dao.*;
 import org.cqipc.edu.service.T_userService;
@@ -25,6 +26,9 @@ public class T_userServiceImpl implements T_userService {
 	T_menuDao tm;
 	@Autowired(required = false)
 	T_deptDao dd;
+	@Autowired(required = false)
+	T_mingjie_lifeanddieDao mjd;
+
 	@Override
 	//用户登录的方法
 	public Object[] Login(String username, String password) {
@@ -61,6 +65,27 @@ public class T_userServiceImpl implements T_userService {
 	@Override
 	public List<T_dept> selectDeptAll() {
 		return dd.selectDeptAll();
+	}
+
+	@Override
+	public List<T_user> selectUserAll(int pageCount,int pageSize) {
+		int p=(pageCount-1)*pageSize;
+		return tu.selectUserAll(p,pageSize);
+	}
+
+	@Override
+	public int selectUserCount() {
+		return tu.selectUserCount();
+	}
+
+	@Override
+	public int addLifeAndDie(T_mingjie_lifeanddie t_mingjie_lifeanddie) {
+		return mjd.addLifeAndDie(t_mingjie_lifeanddie);
+	}
+
+	@Override
+	public List<T_user> selectUserDie() {
+		return tu.selectUserDie();
 	}
 
 
