@@ -9,7 +9,7 @@
 		{
 			"title": "查询所有用户",
 			"icon": "&#xe615",
-			"href": "#",
+			"href": "page/userInfo/selectUserInfo.html",
 			"spread": false
 		},
 		{

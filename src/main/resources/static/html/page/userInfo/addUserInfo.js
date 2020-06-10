@@ -1,12 +1,41 @@
 var form, $,areaData;
+
+
+
 layui.config({
     base : "../../js/"
 }).extend({
     "address" : "address"
 })
+
 layui.use(['form','layer','upload','laydate',"address"],function(){
     form = layui.form;
     $ = layui.jquery;
+
+    $(function () {
+        selectUserDie()
+        lifetime()
+    });
+
+    function selectUserDie() {
+        $.ajax({
+            type: 'get',
+            url: '/selectUserDie',
+            dataType: 'json',
+            success: function (data) {
+                for (var i=0;i<data.length;i++){
+                    $("#plife").append("<option value='"+data[i].user_id+"'>"+data[i].username+"</option>");
+                }
+            }
+        });
+    }
+
+    function lifetime() {
+        for(var i=1;i<=130;i++){
+            $("#lifetime").append("<option value='"+i+"'>"+i+"</option>")
+        }
+    }
+
     var layer = parent.layer === undefined ? layui.layer : top.layer,
         upload = layui.upload,
         laydate = layui.laydate,
@@ -49,66 +78,14 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     //获取省信息
     address.provinces();
 
-    //提交个人资料
-    form.on("submit(changeUser)",function(data){
-        var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
-        //将填写的用户信息存到session以便下次调取
-        var key,userInfoHtml = '';
-        userInfoHtml = {
-            'realName' : $(".realName").val(),
-            'sex' : data.field.sex,
-            'userPhone' : $(".userPhone").val(),
-            'userBirthday' : $(".userBirthday").val(),
-            'province' : data.field.province,
-            'city' : data.field.city,
-            'area' : data.field.area,
-            'userEmail' : $(".userEmail").val(),
-            'myself' : $(".myself").val()
-        };
-        for(key in data.field){
-            if(key.indexOf("like") != -1){
-                userInfoHtml[key] = "on";
-            }
-        }
-        window.sessionStorage.setItem("userInfo",JSON.stringify(userInfoHtml));
-        setTimeout(function(){
-            layer.close(index);
-            layer.msg("提交成功！");
-        },2000);
-        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-    })
+    form.on('submit(addUser)',function (data) {
 
-    //修改密码
-    form.on("submit(changePwd)",function(data){
-        var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
-        setTimeout(function(){
-            layer.close(index);
-            layer.msg("密码修改成功！");
-            $(".pwd").val('');
-        },2000);
-        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     })
-
-    $(function () {
-        selectDept();
-    })
+    //渲染表单
+    form.render();
 
 })
 
 
 
-function selectDept() {
-    var dept = $("#dept")
-    $.ajax({
-        type:"get",
-        url:"/selectDeptAll",
-        dataType:"json",
-        success:function (data) {
-            dept.empty();
-            dept.append("<option value='-1'>请选择部门</option>")
-            for (var i=0;i<data.length;i++){
-                dept.append("<option value='data[i].dept_id'>data[i].dept_name</option>")
-            }
-        }
-    })
-}
+

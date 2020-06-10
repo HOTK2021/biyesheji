@@ -4,41 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="html/layui/css/layui.css">
 </head>
 <body>
 <div style="margin-top: 17px;margin-left: 1103px;">
     <span>key：</span><input type="text" style="height: 27px;width: 220px;" id="sear1" placeholder="请输入key模糊查询"/>
-    <input type="button" onclick="javascript:adduser()" value="测试">
 </div>
  
 <div class="layui-card-body">
     <table class="layui-hide" id="test"></table>
 </div>
 <script src="js/jquery-1.9.1.js"></script>
-<script src="layui/layui.js"></script>
+<script src="html/layui/layui.js"></script>
 <script>
     layui.use('table', function(){
         var kw='';
         addData(kw);
     });
-function adduser(){
-    alert("1");
-    $.ajax({
-        data:{"t_user":t_user},
-        type: "POST",
-        dataType: "JSON",
-        url: "adduser",
-        success: function (data) {
-            if (result=="ok") {
-                alert("1");
-            } else {
-                // 提示失败
-                layer.alert(result[0], {icon: 6});
-            }
-        }
-    }); // end ajax
-}
 
 function addData(kwx){
     var table = layui.table;

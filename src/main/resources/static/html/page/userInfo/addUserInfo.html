@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="../../css/public.css" media="all" />
-    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 </head>
 <body>
-<form class="layui-form layui-row">
+<form class="layui-form layui-row" id="addUser">
     <div class="layui-col-md3 layui-col-xs12 user_right">
         <div class="layui-upload-list">
             <img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace">
@@ -20,6 +19,22 @@
         <p>由于是纯静态页面，所以只能显示一张随机的图片</p>
     </div>
     <div class="layui-col-md6 layui-col-xs12">
+        <div class="layui-form-item">
+            <label class="layui-form-label">前世</label>
+            <div class="layui-input-block">
+                <select name="plife" id="plife" lay-verify="required">
+                    <option value="">请选择前世</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">寿命</label>
+            <div class="layui-input-block">
+                <select name="lifetime" id="lifetime" lay-verify="required">
+                    <option value="">请选择寿命</option>
+                </select>
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
@@ -35,8 +50,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">部门</label>
             <div class="layui-input-block">
-               <select name="dept" id="dept" lay-verify="">
-                   <option value="">选择部门</option>
+               <select name="dept" id="dept" lay-verify="required">
+                   <option value="">请选择部门</option>
+                   <option value="1">开发部</option>
+                   <option value="2">开发一部</option>
+                   <option value="3">开发二部</option>
+                   <option value="4">市场部</option>
+                   <option value="5">人事部</option>
+                   <option value="6">测试部</option>
                </select>
             </div>
         </div>
@@ -63,17 +84,17 @@
         <div class="layui-form-item userAddress">
             <label class="layui-form-label">家庭住址</label>
             <div class="layui-input-inline">
-                <select name="province" lay-filter="province" class="province">
+                <select name="province" lay-verify="required" lay-filter="province" class="province">
                     <option value="-1">请选择省</option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="city" lay-filter="city" disabled>
+                <select name="city" lay-verify="required" lay-filter="city" disabled>
                     <option value="">请选择市</option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="area" lay-filter="area" disabled>
+                <select name="area" lay-verify="required" lay-filter="area" disabled>
                     <option value="">请选择县/区</option>
                 </select>
             </div>
@@ -81,7 +102,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">邮箱</label>
             <div class="layui-input-block">
-                <input type="text" value="" placeholder="请输入邮箱" lay-verify="email" class="layui-input userEmail">
+                <input type="text" value="" placeholder="请输入邮箱" lay-verify="required" lay-verify="email" class="layui-input userEmail">
             </div>
         </div>
         <div class="layui-form-item">
@@ -98,7 +119,6 @@
         </div>
     </div>
 </form>
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="addUserInfo.js"></script>
 <script type="text/javascript" src="../../js/cacheUserInfo.js"></script>
