@@ -13,13 +13,7 @@
 			"spread": false
 		},
 		{
-			"title": "生簿",
-			"icon": "&#xe63c",
-			"href": "page/user/userAdd.html",
-			"spread": false
-		},
-		{
-			"title": "死簿",
+			"title": "生/死簿",
 			"icon": "&#xe63c",
 			"href": "page/user/userAdd.html",
 			"spread": false

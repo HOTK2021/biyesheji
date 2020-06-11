@@ -22,6 +22,7 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
             type: 'get',
             url: '/selectUserDie',
             dataType: 'json',
+            async:false,
             success: function (data) {
                 for (var i=0;i<data.length;i++){
                     $("#plife").append("<option value='"+data[i].user_id+"'>"+data[i].username+"</option>");
@@ -79,10 +80,24 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     address.provinces();
 
     form.on('submit(addUser)',function (data) {
-
+        layer.closeAll();
+        $.ajax({
+            type:"post",
+            url:"/addUser",
+            dataType: "json",
+            data:$("#addUser").serialize(),
+            success:function (data) {
+                if(data=="ok"){
+                    layer.msg("添加成功！",{icon:6});
+                }else{
+                    layer.msg("添加失败！",{icon:5});
+                }
+            }
+        })
+        return false;
     })
     //渲染表单
-    form.render();
+    form.render("select");
 
 })
 

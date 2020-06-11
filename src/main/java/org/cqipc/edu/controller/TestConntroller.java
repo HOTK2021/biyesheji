@@ -2,11 +2,14 @@ package org.cqipc.edu.controller;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.cqipc.edu.bean.T_test;
+import org.cqipc.edu.bean.T_user;
 import org.cqipc.edu.service.T_testService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +36,12 @@ public class TestConntroller {
         map.put("count",countx);
         map.put("data",datas);
 		return map;
+	}
+
+	@RequestMapping("addUser")
+	@ResponseBody
+	public void addUser(T_user user){
+		System.out.println(user);
 	}
 
 }
