@@ -28,6 +28,8 @@ public class T_userServiceImpl implements T_userService {
 	T_deptDao dd;
 	@Autowired(required = false)
 	T_mingjie_lifeanddieDao mjd;
+	@Autowired(required = false)
+	T_plifeDao tpd;
 
 	@Override
 	//用户登录的方法
@@ -86,6 +88,27 @@ public class T_userServiceImpl implements T_userService {
 	@Override
 	public List<T_user> selectUserDie() {
 		return tu.selectUserDie();
+	}
+
+	@Override
+	public int addPlife(T_plife t_plife) {
+		return tpd.addPlife(t_plife);
+	}
+
+	@Override
+	public int selectPife(int user_c_id) {
+		return tpd.selectPife(user_c_id);
+	}
+
+	@Override
+	public List<T_user> selectUserDieAll(int user_id, String username, int pageCount, int pageSize) {
+		int p=(pageCount-1)*pageSize;
+		return tu.selectUserDieAll(user_id,username,p,pageSize);
+	}
+
+	@Override
+	public int selectUserDieCount(int user_id, String username) {
+		return tu.selectUserDieCount(user_id,username);
 	}
 
 

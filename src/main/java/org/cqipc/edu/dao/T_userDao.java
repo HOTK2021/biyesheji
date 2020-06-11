@@ -12,4 +12,12 @@ public interface T_userDao {
 	public List<T_user> selectUserAll(@Param("pageCount")int pageCount,@Param("pageSize")int pageSize);
 	public int selectUserCount();
 	public List<T_user> selectUserDie();
+	public List<T_user> selectUserDieAll(@Param("user_id") int user_id,
+										 @Param("username") String username,
+										 @Param("pageCount")int pageCount,
+										 @Param("pageSize")int pageSize);
+	public int selectUserDieCount(
+			@Param("user_id") int user_id,
+			@Param("username") String username
+	);
 }

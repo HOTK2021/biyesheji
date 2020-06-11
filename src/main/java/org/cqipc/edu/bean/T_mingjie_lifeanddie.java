@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class T_mingjie_lifeanddie {
 	private BigInteger id;
-	private BigInteger userId;
+	private T_user userId;
 	private String createTime;
 	private int age;
 	private int totalAge;
@@ -16,10 +16,10 @@ public class T_mingjie_lifeanddie {
 	public void setId(BigInteger id) {
 		this.id = id;
 	}
-	public BigInteger getUserId() {
+	public T_user getUserId() {
 		return userId;
 	}
-	public void setUserId(BigInteger userId) {
+	public void setUserId(T_user userId) {
 		this.userId = userId;
 	}
 	public String getCreateTime() {
@@ -52,7 +52,7 @@ public class T_mingjie_lifeanddie {
 	public void setStatu(int statu) {
 		this.statu = statu;
 	}
-	public T_mingjie_lifeanddie(BigInteger id, BigInteger userId, String createTime, int age, int totalAge, int overAge, int statu) {
+	public T_mingjie_lifeanddie(BigInteger id, T_user userId, String createTime, int age, int totalAge, int overAge, int statu) {
 		this.id = id;
 		this.userId = userId;
 		this.createTime = createTime;
@@ -61,7 +61,7 @@ public class T_mingjie_lifeanddie {
 		this.overAge = overAge;
 		this.statu = statu;
 	}
-	public T_mingjie_lifeanddie(BigInteger userId, String createTime, int age, int totalAge, int overAge, int statu) {
+	public T_mingjie_lifeanddie(T_user userId, String createTime, int age, int totalAge, int overAge, int statu) {
 		this.userId = userId;
 		this.createTime = createTime;
 		this.age = age;
@@ -71,9 +71,17 @@ public class T_mingjie_lifeanddie {
 	}
 	public T_mingjie_lifeanddie() {
 	}
+
 	@Override
 	public String toString() {
-		return "T_mingjie_lifeanddie [id=" + id + ", userId=" + userId + ", createTime=" + createTime + ", age=" + age
-				+ ", totalAge=" + totalAge + ", overAge=" + overAge + ", statu=" + statu + "]";
+		return "T_mingjie_lifeanddie{" +
+				"id=" + id +
+				", userId=" + userId +
+				", createTime='" + createTime + '\'' +
+				", age=" + age +
+				", totalAge=" + totalAge +
+				", overAge=" + overAge +
+				", statu=" + statu +
+				'}';
 	}
 }
