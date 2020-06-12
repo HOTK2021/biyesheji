@@ -161,8 +161,8 @@ public class UserController {
 	//死簿查询
 	@RequestMapping("selectUserDieAll")
 	@ResponseBody
-	public Map<String,Object> selectUserDieAll(@RequestParam("user_id") int user_id,
-											   @RequestParam("username") String username,
+	public Map<String,Object> selectUserDieAll(@RequestParam(required = false,defaultValue = "0",value = "user_id") int user_id,
+											   @RequestParam(required = false,defaultValue = "",value = "username") String username,
 											   @RequestParam(required = false,defaultValue = "1")int page,
 											   @RequestParam(required = false,defaultValue = "10")int limit){
 		List<T_user> list=null;
