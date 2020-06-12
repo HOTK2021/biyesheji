@@ -7,19 +7,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_user where username=#{username} and password=#{password}
 	</select>
 	<select id="selectUserAll" resultType="T_user">
-		select u.user_id as"user_id",u.username as"username",d.totalage as"totalage"
-		from t_user u,t_mingjie_lifeanddie d where u.USER_ID=d.userId
-
+		select * from t_user
+		<if test="user_id!=0">
+			<where>
+				and user_id=#{user_id}
+			</where>
+		</if>
+		<if test='username!="" and username!=null'>
+			<where>
+				and username like concat('%',#{username},'%')
+			</where>
+		</if>
 		limit #{pageCount},#{pageSize}
 	</select>
 	
 	<select id="selectUserCount" resultType="int">
 		select count(*) from t_user
 		<if test="user_id!=0">
-			where user_id=#{user_id}
+			<where>
+				and user_id=#{user_id}
+			</where>
 		</if>
-		<if test='username!="" or username!=null'>
-			where username  like concat('%',#{username},'%')
+		<if test='username!="" and username!=null'>
+			<where>
+				and username like concat('%',#{username},'%')
+			</where>
 		</if>
 	</select>
 
@@ -43,13 +55,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<where>
 				and user_id=#{user_id}
 			</where>
-
 		</if>
 		<if test='username!="" and username!=null'>
 			<where>
 				and username like concat('%',#{username},'%')
 			</where>
-
 		</if>
 	</select>
 	<insert id="adduser" >

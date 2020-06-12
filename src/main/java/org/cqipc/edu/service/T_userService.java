@@ -14,8 +14,8 @@ public interface T_userService {
 	public Object[] Login(String username,String password);
 	public int adduser(T_user t_user);
 	public List<T_dept> selectDeptAll();
-	public List<T_user> selectUserAll(int pageCount,int pageSize);
-	public int selectUserCount();
+	public List<T_user> selectUserAll( int user_id,String username,int pageCount,int pageSize);
+	public int selectUserCount( int user_id,String username);
 	public int addLifeAndDie(T_mingjie_lifeanddie t_mingjie_lifeanddie);
 	public List<T_user> selectUserDie();
 	public int addPlife(T_plife t_plife);

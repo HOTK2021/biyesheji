@@ -99,7 +99,10 @@ public class UserController {
 		//T_user t_user=new T_user(username,password,dept_id,email,mobile,status,create_time,modify_time,last_login_time,
 		//		ssex,description,avatar,age,lifetime);
 
+		System.out.println(t_user);
+		System.out.println(totalage+"  "+user_c_id);
 		//将密码进行MD5加密
+		System.out.println("1");
 		String pwd=t_user.getPassword();
 		t_user.setPassword(MD5.getMd5(pwd));
 		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
@@ -129,10 +132,25 @@ public class UserController {
 
 	@RequestMapping("/selectUserInfoAll")
 	@ResponseBody
-	public Map<String,Object> selectUserInfoAll(@RequestParam(required = false,defaultValue = "1")int page,
+	public Map<String,Object> selectUserInfoAll(@RequestParam(required = false,defaultValue = "0",value = "user_id") int user_id,
+												@RequestParam(required = false,defaultValue = "",value = "username") String username,
+												@RequestParam(required = false,defaultValue = "1")int page,
 												@RequestParam(required = false,defaultValue = "10")int limit){
-			List<T_user> list=ts.selectUserAll(page,limit);
-			int count=ts.selectUserCount();
+
+		List<T_user> list=null;
+		int count=0;
+		if(user_id!=0){
+			list=ts.selectUserAll(user_id,"",page,limit);
+			count=ts.selectUserCount(user_id,"");
+		}else if(username!=""&&username!=null){
+			list=ts.selectUserAll(0,username,page,limit);
+			count=ts.selectUserCount(0,username);
+		}else {
+			list=ts.selectUserAll(0,"",page,limit);
+			count=ts.selectUserCount(0,"");
+		}
+
+
 			Map<String,Object> map=new HashMap<String, Object>();
 			map.put("code",0);
 			map.put("msg","");

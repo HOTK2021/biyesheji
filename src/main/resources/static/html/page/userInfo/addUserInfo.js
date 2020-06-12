@@ -81,9 +81,13 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
 
     form.on('submit(addUser)',function (data) {
         layer.closeAll();
+        var plife=$("#plife").val();
+        alert(plife);
+        var lifetime=$("#lifetime").val();
+        alert(lifetime);
         $.ajax({
             type:"post",
-            url:"/addUser",
+            url:"/addUser?totalage="+lifetime+"&user_c_id="+plife,
             dataType: "json",
             data:$("#addUser").serialize(),
             success:function (data) {

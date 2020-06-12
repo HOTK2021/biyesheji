@@ -70,14 +70,14 @@ public class T_userServiceImpl implements T_userService {
 	}
 
 	@Override
-	public List<T_user> selectUserAll(int pageCount,int pageSize) {
+	public List<T_user> selectUserAll(int user_id, String username,int pageCount,int pageSize) {
 		int p=(pageCount-1)*pageSize;
-		return tu.selectUserAll(p,pageSize);
+		return tu.selectUserAll( user_id,  username,p,pageSize);
 	}
 
 	@Override
-	public int selectUserCount() {
-		return tu.selectUserCount();
+	public int selectUserCount(int user_id, String username) {
+		return tu.selectUserCount( user_id,  username);
 	}
 
 	@Override
