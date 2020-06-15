@@ -89,12 +89,13 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
         var data = $("#addUser").serialize()
         $.ajax({
             type:"post",
-            url:"/addUser?totalage="+lifetime+"&user_c_id="+plife,
+            url:"/adduser?totalage="+lifetime+"&user_c_id="+plife,
             dataType: "json",
             data:data,
             success:function (data) {
-                if(data=="ok"){
+                if(data==1){
                     layer.msg("添加成功！",{icon:6});
+
                 }else{
                     layer.msg("添加失败！",{icon:5});
                 }

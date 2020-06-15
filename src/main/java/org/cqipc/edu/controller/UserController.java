@@ -74,7 +74,7 @@ public class UserController {
 
 	@RequestMapping("/adduser")
 	@ResponseBody
-	public String adduser(
+	public int adduser(
 			   T_user t_user,
 			@RequestParam("totalage")int totalage,
 			@RequestParam("user_c_id")BigInteger user_c_id
@@ -115,9 +115,9 @@ public class UserController {
 
 
 		if(count>0&&ts.addLifeAndDie(t_mingjie_lifeanddie)>0&&ts.addPlife(t_plife)>0){
-			return "ok";
+			return 1;
 		}else {
-			return "no";
+			return 2;
 		}
 
 	}
