@@ -62,10 +62,11 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     //         }
     //     }
     // })
+
     //选择出生日期
     laydate.render({
         elem: '.userBirthday',
-        format: 'yyyy-MM-dd HH:mm:ss',
+        format: 'yyyy-MM-dd',
         trigger: 'click',
         max : 0,
         mark : {"0-12-15":"生日"},
@@ -79,23 +80,18 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     //获取省信息
     address.provinces();
 
-    form.on('submit(addUser)',function (data) {
+    form.on('submit(addUser)',function () {
         layer.closeAll();
         var plife=$("#plife").val();
         alert(plife);
         var lifetime=$("#lifetime").val();
         alert(lifetime);
-        var data=$("#addUser").serialize();
+        var data = $("#addUser").serialize()
         $.ajax({
-
-            url:"/adduser?totalage="+lifetime+"&user_c_id="+plife,
-         //   contentType: "application/json;charset=UTF-8",
-            data:data,
-                //JSON.stringify($("#addUser").serialize()),
             type:"post",
+            url:"/addUser?totalage="+lifetime+"&user_c_id="+plife,
             dataType: "json",
-
-
+            data:data,
             success:function (data) {
                 if(data=="ok"){
                     layer.msg("添加成功！",{icon:6});

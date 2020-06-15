@@ -5,7 +5,7 @@
     <title>用户信息</title>
     <link rel="stylesheet" href="../../layui/css/layui.css">
     <script type="text/javascript" src="../../layui/layui.js"></script>
-    <script type="text/javascript" src="selectUserInfo.js"></script>
+    <script type="text/javascript" src="lifeAndDie.js"></script>
 </head>
 <body>
 <!-- 页面导航 -->
@@ -19,6 +19,14 @@
 </ul>
 <br/>
 <br/>
+<!-- 搜索框 -->
+<div class="layui-form-item">
+    <label class="layui-form-label" >搜索用户</label>
+    <div class="layui-input-block" style="display: flex">
+        <input type="text" name="title" placeholder="ID/用户名" class="layui-input" style="width: 30%">
+        <button type="button" class="layui-btn">搜索</button>
+    </div>
+</div>
 <!-- 数据表 -->
 <div class="layui-card-body">
     <table id="userInfoAll" class="layui-hide" layui-filter=""></table>

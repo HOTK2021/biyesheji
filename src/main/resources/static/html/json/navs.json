@@ -15,7 +15,7 @@
 		{
 			"title": "生/死簿",
 			"icon": "&#xe63c",
-			"href": "page/user/userAdd.html",
+			"href": "page/userInfo/lifeAndDie.html",
 			"spread": false
 		}
 	]
