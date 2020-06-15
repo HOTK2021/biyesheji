@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestConntroller {
 	@Autowired
 	T_testService ts;
-	@Autowired(required = false)
+	@Autowired
 	T_userService tus;
 
     @RequestMapping("/showData")
@@ -45,11 +45,48 @@ public class TestConntroller {
 		return map;
 	}
 
+	@RequestMapping("/insertTest")
+	@ResponseBody
+	public void insertTest()  {
+		T_test t_test = new T_test();
+		t_test.setField1("新增得到主键5");
+		t_test.setField2(12345);
+		t_test.setField3("哈哈");
+		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+		t_test.setCreate_time(data);
+		ts.insertTest(t_test);
+		// 获取新增数据主键
+		System.out.println("新增数据的主键 :" + t_test.getId());
+	}
+
 //	@RequestMapping("addUser")
 //	@ResponseBody
-//	public void addUser(T_user t_user,
+//	public String addUser(T_user t_user,
 //						@RequestParam("totalage")int totalage,
 //						@RequestParam("user_c_id") BigInteger user_c_id){
+//		System.out.println(t_user);
+//		System.out.println(totalage+"  "+user_c_id);
+//		//将密码进行MD5加密
+//		System.out.println("1");
+//		String pwd=t_user.getPassword();
+//		//t_user.setPassword(MD5.getMd5(pwd));
+//		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+//		t_user.setCreate_time(data);
+//		int count=tus.adduser(t_user);
+//
+//		System.out.println("新增数据的主键 :" + t_user.getUser_id());
+//		T_mingjie_lifeanddie t_mingjie_lifeanddie=new T_mingjie_lifeanddie(null,t_user,data,0,totalage,totalage,1);
+//		T_plife t_plife=new T_plife(1,1,t_user.getUser_id(),"",data,user_c_id);
+//
+//
+//		if(count>0&&tus.addLifeAndDie(t_mingjie_lifeanddie)>0&&tus.addPlife(t_plife)>0){
+//			return "ok";
+//		}else {
+//			return "no";
+//		}
+//	}
+
+
 //
 //		System.out.println(totalage+"  "+user_c_id);
 //		String pwd=t_user.getPassword();

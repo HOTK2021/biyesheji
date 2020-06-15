@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cqipc.edu.dao.T_plifeDao">
     <insert id="addPlife" >
-        insert into t_plife values(null,#{tp_count},#{userId.user_id},#{tp_description},#{tp_time},#{user_c_id})
+        insert into t_plife values(null,#{tp_count},#{userID},#{tp_description},#{tp_time},#{user_c_id})
     </insert>
     <select id="selectPife" resultType="int">
         select * from t_plife where user_c_id=#{user_c_id};

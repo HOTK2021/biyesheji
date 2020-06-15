@@ -62,11 +62,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</where>
 		</if>
 	</select>
+
+	<!--新增信息，并拿到新增信息的表主键信息。
+	新增数据，得到主键的外层写法没什么特别，跟普通的insert一样。只不过里面加了selectKey-->
 	<insert id="adduser" >
+		<!--selectKey  会将 SELECT LAST_INSERT_ID()的结果放入到传入的model的主键里面，
+            keyProperty 对应的model中的主键的属性名，这里是 user 中的id，因为它跟数据库的主键对应
+            order AFTER 表示 SELECT LAST_INSERT_ID() 在insert执行之后执行,多用与自增主键，
+            BEFORE 表示 SELECT LAST_INSERT_ID() 在insert执行之前执行，这样的话就拿不到主键了，
+            这种适合那种主键不是自增的类型  resultType 主键类型 -->
+		<selectKey keyProperty="user_id" order="AFTER" resultType="BigInteger">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 		insert into t_user values(null,#{username},#{password},#{dept_id},#{email},#{mobile},#{status},
 		#{create_time},#{modify_time},#{last_login_time},#{ssex},#{description},#{avatar},#{age}
 		)
 	</insert>
+
 	<select id="selectUserDie" resultType="T_user">
 		select * from t_user_c where status = 1 and user_id=(select user_id from t_plife where user_c_id is null);
 	</select>

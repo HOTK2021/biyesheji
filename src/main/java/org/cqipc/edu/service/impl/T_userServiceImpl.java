@@ -12,23 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service("t_userService")
 public class T_userServiceImpl implements T_userService {
-	@Autowired(required = false)
+	@Autowired
 	T_userDao tu;
-	@Autowired(required = false)
+	@Autowired
 	T_user_configDao tc;
-	@Autowired(required = false)
+	@Autowired
 	T_user_roleDao to;
-	@Autowired(required = false)
+	@Autowired
 	T_roleDao rd;
-	@Autowired(required = false)
+	@Autowired
 	T_role_menuDao trm;
-	@Autowired(required = false)
+	@Autowired
 	T_menuDao tm;
-	@Autowired(required = false)
+	@Autowired
 	T_deptDao dd;
-	@Autowired(required = false)
+	@Autowired
 	T_mingjie_lifeanddieDao mjd;
-	@Autowired(required = false)
+	@Autowired
 	T_plifeDao tpd;
 
 	@Override

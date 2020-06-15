@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
 
+import com.alibaba.fastjson.JSONObject;
 import javafx.scene.input.DataFormat;
 import org.apache.ibatis.annotations.Param;
 import org.cqipc.edu.bean.T_dept;
@@ -15,10 +16,7 @@ import org.cqipc.edu.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
@@ -31,7 +29,7 @@ import java.util.Map;
 @Controller
 @SessionAttributes("LoginParams")
 public class UserController {
-	@Autowired(required = false)
+	@Autowired
 	T_userService ts;
 	
 
@@ -77,7 +75,7 @@ public class UserController {
 	@RequestMapping("/adduser")
 	@ResponseBody
 	public String adduser(
-			T_user t_user,
+			   T_user t_user,
 			@RequestParam("totalage")int totalage,
 			@RequestParam("user_c_id")BigInteger user_c_id
 
@@ -96,26 +94,32 @@ public class UserController {
 //			@RequestParam("age")int age,
 //			@RequestParam("lifetime")int lifetime
 			){
-		//T_user t_user=new T_user(username,password,dept_id,email,mobile,status,create_time,modify_time,last_login_time,
-		//		ssex,description,avatar,age,lifetime);
 
+		//T_user t_user=new T_user();
+//		int totalage=100;
+//		BigInteger user_c_id=BigInteger.valueOf(5);
 		System.out.println(t_user);
 		System.out.println(totalage+"  "+user_c_id);
 		//将密码进行MD5加密
 		System.out.println("1");
 		String pwd=t_user.getPassword();
 		t_user.setPassword(MD5.getMd5(pwd));
-		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
+		String data=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+		t_user.setCreate_time(data);
+		int count=ts.adduser(t_user);
+
+		System.out.println("新增数据的主键 :" + t_user.getUser_id());
 		T_mingjie_lifeanddie t_mingjie_lifeanddie=new T_mingjie_lifeanddie(null,t_user,data,0,totalage,totalage,1);
 		T_plife t_plife=new T_plife(1,1,t_user.getUser_id(),"",data,user_c_id);
 
 
-		if(ts.adduser(t_user)>0&&ts.addLifeAndDie(t_mingjie_lifeanddie)>0&&ts.addPlife(t_plife)>0){
+		if(count>0&&ts.addLifeAndDie(t_mingjie_lifeanddie)>0&&ts.addPlife(t_plife)>0){
 			return "ok";
 		}else {
 			return "no";
 		}
+
 	}
 	@RequestMapping("selectDeptAll")
 	@ResponseBody

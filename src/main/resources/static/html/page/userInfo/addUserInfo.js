@@ -55,17 +55,17 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     });
 
     //添加验证规则
-    form.verify({
-        userBirthday : function(value){
-            if(!/^(\d{4})[\u4e00-\u9fa5]|[-\/](\d{1}|0\d{1}|1[0-2])([\u4e00-\u9fa5]|[-\/](\d{1}|0\d{1}|[1-2][0-9]|3[0-1]))*$/.test(value)){
-                return "出生日期格式不正确！";
-            }
-        }
-    })
+    // form.verify({
+    //     userBirthday : function(value){
+    //         if(!/^(\d{4})[\u4e00-\u9fa5]|[-\/](\d{1}|0\d{1}|1[0-2])([\u4e00-\u9fa5]|[-\/](\d{1}|0\d{1}|[1-2][0-9]|3[0-1]))*$/.test(value)){
+    //             return "出生日期格式不正确！";
+    //         }
+    //     }
+    // })
     //选择出生日期
     laydate.render({
         elem: '.userBirthday',
-        format: 'yyyy年MM月dd日',
+        format: 'yyyy-MM-dd HH:mm:ss',
         trigger: 'click',
         max : 0,
         mark : {"0-12-15":"生日"},
@@ -85,11 +85,17 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
         alert(plife);
         var lifetime=$("#lifetime").val();
         alert(lifetime);
+        var data=$("#addUser").serialize();
         $.ajax({
+
+            url:"/adduser?totalage="+lifetime+"&user_c_id="+plife,
+         //   contentType: "application/json;charset=UTF-8",
+            data:data,
+                //JSON.stringify($("#addUser").serialize()),
             type:"post",
-            url:"/addUser?totalage="+lifetime+"&user_c_id="+plife,
             dataType: "json",
-            data:$("#addUser").serialize(),
+
+
             success:function (data) {
                 if(data=="ok"){
                     layer.msg("添加成功！",{icon:6});
