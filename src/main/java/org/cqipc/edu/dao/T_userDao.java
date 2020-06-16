@@ -2,6 +2,7 @@ package org.cqipc.edu.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.cqipc.edu.bean.T_user;
+import org.cqipc.edu.bean.T_user_ov;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -24,4 +25,7 @@ public interface T_userDao {
 			@Param("user_id") int user_id,
 			@Param("username") String username
 	);
+	public List<T_user_ov> userdie();
+	public int userdieCount();
+
 }

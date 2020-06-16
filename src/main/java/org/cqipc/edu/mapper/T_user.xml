@@ -82,5 +82,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserDie" resultType="T_user">
 		select * from t_user_c where status = 1 and user_id=(select user_id from t_plife where user_c_id is null);
 	</select>
-
+	<!--查询用户死亡待确认名单-->
+	<select id="userdie" resultType="T_user_ov">
+		select u.user_id as"user_id",u.username as"username",u.SSEX  as"ssex",t.dieTime as"dieTime"
+		from  t_user u,t_mingjie_lifeanddie t where u.user_id=t.userid and t.statu=0
+	</select>
+	<!--查询用户死亡待确认名单条数-->
+	<select id="userdieCount" resultType="int">
+		select count(*) from t_mingjie_lifeanddie where statu=0;
+	</select>
 </mapper>

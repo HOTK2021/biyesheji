@@ -7,10 +7,7 @@ import javax.xml.crypto.Data;
 import com.alibaba.fastjson.JSONObject;
 import javafx.scene.input.DataFormat;
 import org.apache.ibatis.annotations.Param;
-import org.cqipc.edu.bean.T_dept;
-import org.cqipc.edu.bean.T_mingjie_lifeanddie;
-import org.cqipc.edu.bean.T_plife;
-import org.cqipc.edu.bean.T_user;
+import org.cqipc.edu.bean.*;
 import org.cqipc.edu.service.T_userService;
 import org.cqipc.edu.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,27 +138,27 @@ public class UserController {
 												@RequestParam(required = false,defaultValue = "1")int page,
 												@RequestParam(required = false,defaultValue = "10")int limit){
 
-		List<T_user> list=null;
+		List<T_user_ov> list=null;
 		int count=0;
 		if(user_id!=0){
-			list=ts.selectUserAll(user_id,"",page,limit);
+			list=ts.selectLifeAndDie(user_id,"",page,limit);
 			count=ts.selectUserCount(user_id,"");
 		}else if(username!=""&&username!=null){
-			list=ts.selectUserAll(0,username,page,limit);
+			list=ts.selectLifeAndDie(0,username,page,limit);
 			count=ts.selectUserCount(0,username);
 		}else {
-			list=ts.selectUserAll(0,"",page,limit);
+			list=ts.selectLifeAndDie(0,"",page,limit);
 			count=ts.selectUserCount(0,"");
 		}
-
-
 			Map<String,Object> map=new HashMap<String, Object>();
 			map.put("code",0);
 			map.put("msg","");
 			map.put("count",count);
 			map.put("data",list);
+
 	return 	map;
 	}
+
 	//死簿查询
 	@RequestMapping("selectUserDieAll")
 	@ResponseBody
@@ -188,6 +185,19 @@ public class UserController {
 		map.put("data",list);
 		return 	map;
 	}
+	//查询用户死亡待确认名单
+	@RequestMapping("/userdie")
+	@ResponseBody
+	public  Map<String,Object> userdie(){
+		List<T_user_ov> list=ts.userdie();
+		int count=ts.userdieCount();
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",count);
+		map.put("data",list);
+		return 	map;
+		}
 
 
 	@RequestMapping("/login")

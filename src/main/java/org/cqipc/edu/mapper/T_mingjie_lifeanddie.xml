@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cqipc.edu.dao.T_mingjie_lifeanddieDao">
     <insert id="addLifeAndDie">
-        insert into t_mingjie_lifeanddie values(null,#{userId.user_id},#{createTime},#{age},#{totalAge},#{overAge},#{statu})
+        insert into t_mingjie_lifeanddie values(null,#{userId.user_id},#{create_time},#{age},#{totalAge},#{overAge},#{statu})
     </insert>
+    <select id="selectLifeAndDie" resultType="T_user_ov">
+        select u.user_id as"user_id",u.username as"username",u.create_time as"create_time",u.last_login_time as"last_login_time",
+               d.totalage as"totalage",d.overage as"overage"
+        from t_user u,t_mingjie_lifeanddie d where u.USER_ID=d.userId
+        <if test="user_id!=0">
+                and u.user_id=#{user_id}
+        </if>
+        <if test='username!="" and username!=null'>
+                and u.username like concat('%',#{username},'%')
+        </if>
+        limit #{pageCount},#{pageSize}
+    </select>
+    <select id="selectLifeAndDieCount" resultType="int">
+        select conut(*) from t_usr
+    </select>
 </mapper>

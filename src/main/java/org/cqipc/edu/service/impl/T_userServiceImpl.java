@@ -111,5 +111,21 @@ public class T_userServiceImpl implements T_userService {
 		return tu.selectUserDieCount(user_id,username);
 	}
 
+	@Override
+	public List<T_user_ov> selectLifeAndDie(int user_id, String username,int pageCount,int pageSize) {
+		int p=(pageCount-1)*pageSize;
+		return mjd.selectLifeAndDie(user_id,  username,p,pageSize);
+	}
+
+	@Override
+	public List<T_user_ov> userdie() {
+		return tu.userdie();
+	}
+
+	@Override
+	public int userdieCount() {
+		return tu.userdieCount();
+	}
+
 
 }

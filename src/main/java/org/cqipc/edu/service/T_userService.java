@@ -2,10 +2,7 @@ package org.cqipc.edu.service;
 
 
 import org.apache.ibatis.annotations.Param;
-import org.cqipc.edu.bean.T_dept;
-import org.cqipc.edu.bean.T_mingjie_lifeanddie;
-import org.cqipc.edu.bean.T_plife;
-import org.cqipc.edu.bean.T_user;
+import org.cqipc.edu.bean.*;
 
 import java.util.List;
 
@@ -22,6 +19,11 @@ public interface T_userService {
 	public int selectPife(int user_c_id);
 	public List<T_user> selectUserDieAll( int user_id,String username, int pageCount, int pageSize);
 	public int selectUserDieCount(int user_id, String username);
-
+	public List<T_user_ov> selectLifeAndDie(int user_id,
+											String username,
+											int pageCount,
+											int pageSize);
+	public List<T_user_ov> userdie();
+	public int userdieCount();
 
 }
