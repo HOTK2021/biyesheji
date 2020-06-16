@@ -95,7 +95,6 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
             success:function (data) {
                 if(data==1){
                     layer.msg("添加成功！",{icon:6});
-
                 }else{
                     layer.msg("添加失败！",{icon:5});
                 }

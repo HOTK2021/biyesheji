@@ -18,7 +18,27 @@
 			"href": "page/userInfo/lifeAndDie.html",
 			"spread": false
 		}
+	],
+	"orderManagement" : [
+		{
+			"title": "待确认",
+			"icon": "&#xe61f",
+			"href": "page/order/confirmed.html",
+			"spread": false
+		},
+		{
+			"title": "待审判",
+			"icon": "&#xe61f",
+			"href": "page/order/approve.html",
+			"spread": false
+		},{
+			"title": "待轮回",
+			"icon": "&#xe61f",
+			"href": "page/userInfo/addUserInfo.html",
+			"spread": false
+		}
 	]
 }
+
 
 

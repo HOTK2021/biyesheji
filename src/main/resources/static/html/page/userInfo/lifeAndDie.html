@@ -14,7 +14,7 @@
         <a href="javascript:;" onclick="selectUser()" id="selectUser"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>查询生簿</cite></a>
     </li>
     <li class="layui-nav-item layui-this" data-menu="selectUserDie"  pc>
-        <a href="javascript:;" onclick="selectUserDie()"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>查询死簿</cite></a>
+        <a href="javascript:;" onclick="selectUserInfoDie()"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>查询死簿</cite></a>
     </li>
 </ul>
 <br/>
@@ -23,8 +23,8 @@
 <div class="layui-form-item">
     <label class="layui-form-label" >搜索用户</label>
     <div class="layui-input-block" style="display: flex">
-        <input type="text" name="title" placeholder="ID/用户名" class="layui-input" style="width: 30%">
-        <button type="button" class="layui-btn">搜索</button>
+        <input type="text" id="searchText" placeholder="ID/用户名" class="layui-input" style="width: 30%">
+        <button type="button" class="layui-btn" onclick="search()">搜索</button>
     </div>
 </div>
 <!-- 数据表 -->
