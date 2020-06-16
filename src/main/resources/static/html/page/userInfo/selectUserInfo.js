@@ -22,7 +22,7 @@ function selectUserInfo(url){
             ,url: url //数据接口
             ,page: true //开启分页
             ,cols: [[ //表头
-                {field: 'user_id', title: 'ID', sort: true, fixed: 'left'}
+                ,{field: 'user_id', title: 'ID', sort: true, fixed: 'left'}
                 ,{field: 'username', title: '用户名'}
                 ,{field: 'totalAge', title: '剩余寿命'}
                 ,{field: 'create_time', title: '出生日期', sort: true}
