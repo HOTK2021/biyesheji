@@ -199,8 +199,8 @@ public class UserController {
 	//待确认人员 从生簿到死簿
 	@RequestMapping("/RemoveAndAdd")
 	@ResponseBody
-	public int  RemoveAndAdd(@RequestParam("user_id")int[] user_id){
-		System.out.println(user_id);
+	public int  RemoveAndAdd(@RequestParam(value = "user_id[]")int[] user_id){
+		System.out.println(user_id.length);
 		List<BigInteger> list1=new ArrayList<>();
 		list1.add(BigInteger.valueOf(48));
 		list1.add(BigInteger.valueOf(49));
