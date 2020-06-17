@@ -91,4 +91,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userdieCount" resultType="int">
 		select count(*) from t_mingjie_lifeanddie where statu=0;
 	</select>
+	<!--从生簿中删除用户-->
+	<delete id="removeUser">
+		delete from t_user where user_id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<!--查询待确认人员在生簿中的信息-->
+	<select id="selectUserConfirmed" resultType="T_user">
+		select * from t_user  where user_id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	<!--向死簿中添加-->
+	<insert id="addToUser_c">
+		insert into t_user_c values
+		<foreach collection="list" item="u" separator=",">
+			(#{u.user_id},#{u.username},#{u.password},#{u.dept_id},#{u.email},#{u.mobile},#{u.status},
+			#{u.create_time},#{u.modify_time},#{u.last_login_time},#{u.ssex},#{u.description},#{u.avatar},#{u.age})
+		</foreach>
+	</insert>
 </mapper>

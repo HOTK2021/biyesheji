@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -197,11 +194,36 @@ public class UserController {
 		map.put("count",count);
 		map.put("data",list);
 		return 	map;
-		}
-
-
-	@RequestMapping("/login")
-	public String login(){
-		return "login";
 	}
+
+	//待确认人员 从生簿到死簿
+	@RequestMapping("/RemoveAndAdd")
+	@ResponseBody
+	public int  RemoveAndAdd(@RequestParam("user_id")int[] user_id){
+		System.out.println(user_id);
+		List<BigInteger> list1=new ArrayList<>();
+		list1.add(BigInteger.valueOf(48));
+		list1.add(BigInteger.valueOf(49));
+		System.out.println(list1);
+	//	int count1=ts.removeUser(list1);
+		List<T_user> list2=ts.selectUserConfirmed(list1);
+		System.out.println(list2);
+		String date=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+		T_user t_user1=new T_user(BigInteger.valueOf(100),"张三","123131",BigInteger.valueOf(2),null,null,1,date,date,null,"男",null,null,0);
+		T_user t_user2=new T_user(BigInteger.valueOf(101),"李四","123131",BigInteger.valueOf(2),null,null,1,date,date,null,"男",null,null,0);
+		List<T_user> list=new ArrayList<>();
+		list.add(t_user1);
+		list.add(t_user2);
+		//System.out.println(list);
+		int count=ts.addToUser_c(list2);
+		if (count!=0){
+			return 1;
+		}else {
+			return 2;
+		}
+	}
+
+
+
+
 }

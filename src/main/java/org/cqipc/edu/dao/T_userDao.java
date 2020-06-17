@@ -25,7 +25,13 @@ public interface T_userDao {
 			@Param("user_id") int user_id,
 			@Param("username") String username
 	);
+
+
+	//待确认功能
 	public List<T_user_ov> userdie();
 	public int userdieCount();
+	public int removeUser(List<BigInteger> list);
+	public int addToUser_c(List<T_user> list);
+	public List<T_user>  selectUserConfirmed(List<BigInteger> list);
 
 }

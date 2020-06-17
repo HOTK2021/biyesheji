@@ -127,5 +127,20 @@ public class T_userServiceImpl implements T_userService {
 		return tu.userdieCount();
 	}
 
+	@Override
+	public int removeUser(List<BigInteger> list) {
+		return tu.removeUser(list);
+	}
+
+	@Override
+	public int addToUser_c(List<T_user> list) {
+		return tu.addToUser_c(list);
+	}
+
+	@Override
+	public List<T_user> selectUserConfirmed(List<BigInteger> list) {
+		return tu.selectUserConfirmed(list);
+	}
+
 
 }

@@ -4,6 +4,7 @@ package org.cqipc.edu.service;
 import org.apache.ibatis.annotations.Param;
 import org.cqipc.edu.bean.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -23,7 +24,12 @@ public interface T_userService {
 											String username,
 											int pageCount,
 											int pageSize);
+
+	//待确认功能
 	public List<T_user_ov> userdie();
 	public int userdieCount();
+	public int removeUser(List<BigInteger> list);
+	public int addToUser_c(List<T_user> list);
+	public List<T_user>  selectUserConfirmed(List<BigInteger> list);
 
 }

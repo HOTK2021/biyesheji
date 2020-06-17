@@ -35,10 +35,11 @@ function selectNotConfirmed(){
                 for (var i=0;i<data.length;i++){
                     user_id[i] = JSON.stringify(data[i].user_id);
                 }
+                user_id=JSON.stringify(user_id);
                 $.ajax({
                     type: 'post',
-                    data: user_id,
                     url: '/RemoveAndAdd',
+                    data:{"user_id":[user_id]},
                     dataType: 'json',
                     success:function (data) {
                         if(data==1){
