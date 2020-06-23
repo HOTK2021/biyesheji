@@ -12,23 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service("t_userService")
 public class T_userServiceImpl implements T_userService {
-	@Autowired
+	@Autowired(required = false)
 	T_userDao tu;
-	@Autowired
+	@Autowired(required = false)
 	T_user_configDao tc;
-	@Autowired
+	@Autowired(required = false)
 	T_user_roleDao to;
-	@Autowired
+	@Autowired(required = false)
 	T_roleDao rd;
-	@Autowired
+	@Autowired(required = false)
 	T_role_menuDao trm;
-	@Autowired
+	@Autowired(required = false)
 	T_menuDao tm;
-	@Autowired
+	@Autowired(required = false)
 	T_deptDao dd;
-	@Autowired
+	@Autowired(required = false)
 	T_mingjie_lifeanddieDao mjd;
-	@Autowired
+	@Autowired(required = false)
 	T_plifeDao tpd;
 
 	@Override
@@ -114,7 +114,12 @@ public class T_userServiceImpl implements T_userService {
 	@Override
 	public List<T_user_ov> selectLifeAndDie(int user_id, String username,int pageCount,int pageSize) {
 		int p=(pageCount-1)*pageSize;
-		return mjd.selectLifeAndDie(user_id,  username,p,pageSize);
+		return mjd.selectLifeAndDie(user_id,username,p,pageSize);
+	}
+
+	@Override
+	public int selectLifeAndDieCount(int user_id, String username) {
+		return mjd.selectLifeAndDieCount(user_id,username);
 	}
 
 	@Override
@@ -140,6 +145,36 @@ public class T_userServiceImpl implements T_userService {
 	@Override
 	public List<T_user> selectUserConfirmed(List<BigInteger> list) {
 		return tu.selectUserConfirmed(list);
+	}
+
+	@Override
+	public int addIntoTrial(List<T_mingjie_trial> list) {
+		return tu.addIntoTrial(list);
+	}
+
+	//待审判
+	@Override
+	public List<T_user_ov> selectApprove() {
+		return tu.selectApprove();
+	}
+
+	@Override
+	public int selectApproveCount() {
+		return tu.selectApproveCount();
+	}
+
+	//入狱
+	@Override
+	public int addJail(T_mingjie_eighteen t_mingjie_eighteen) {
+		return tu.addJail(t_mingjie_eighteen);
+	}
+	@Override
+	public int inJail(T_mingjie_eighteen_log t_mingjie_eighteen_log) {
+		return tu.inJail(t_mingjie_eighteen_log);
+	}
+	@Override
+	public List<T_mingjie_eighteen> selectJail(){
+		return tu.selectJail();
 	}
 
 

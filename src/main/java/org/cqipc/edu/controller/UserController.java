@@ -139,13 +139,13 @@ public class UserController {
 		int count=0;
 		if(user_id!=0){
 			list=ts.selectLifeAndDie(user_id,"",page,limit);
-			count=ts.selectUserCount(user_id,"");
+			count=ts.selectLifeAndDieCount(user_id,"");
 		}else if(username!=""&&username!=null){
 			list=ts.selectLifeAndDie(0,username,page,limit);
-			count=ts.selectUserCount(0,username);
+			count=ts.selectLifeAndDieCount(0,username);
 		}else {
 			list=ts.selectLifeAndDie(0,"",page,limit);
-			count=ts.selectUserCount(0,"");
+			count=ts.selectLifeAndDieCount(0,"");
 		}
 			Map<String,Object> map=new HashMap<String, Object>();
 			map.put("code",0);
@@ -202,13 +202,18 @@ public class UserController {
 	public int  RemoveAndAdd(@RequestParam(value = "user_id[]")int[] user_id){
 		System.out.println(user_id.length);
 		List<BigInteger> list1=new ArrayList<>();
-		list1.add(BigInteger.valueOf(48));
-		list1.add(BigInteger.valueOf(49));
+		for(int i=0;i<user_id.length;i++){
+			list1.add(BigInteger.valueOf(user_id[i]));
+		}
 		System.out.println(list1);
-	//	int count1=ts.removeUser(list1);
+		int count1=ts.removeUser(list1);
 		List<T_user> list2=ts.selectUserConfirmed(list1);
-		System.out.println(list2);
 		String date=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+		for(T_user c:list2){
+			c.setCreate_time(date);
+		}
+		System.out.println(list2);
+
 		T_user t_user1=new T_user(BigInteger.valueOf(100),"张三","123131",BigInteger.valueOf(2),null,null,1,date,date,null,"男",null,null,0);
 		T_user t_user2=new T_user(BigInteger.valueOf(101),"李四","123131",BigInteger.valueOf(2),null,null,1,date,date,null,"男",null,null,0);
 		List<T_user> list=new ArrayList<>();
@@ -216,7 +221,7 @@ public class UserController {
 		list.add(t_user2);
 		//System.out.println(list);
 		int count=ts.addToUser_c(list2);
-		if (count!=0){
+		if (count!=0&&count1!=0){
 			return 1;
 		}else {
 			return 2;
@@ -224,6 +229,46 @@ public class UserController {
 	}
 
 
+	//待审判
+	@RequestMapping("/selectApprove")
+	@ResponseBody
+	public  Map<String,Object> selectApprove(){
+		List<T_user_ov> list=ts.selectApprove();
+		int count=ts.selectApproveCount();
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",count);
+		map.put("data",list);
+		return 	map;
+	}
 
 
+	//监狱
+	@RequestMapping("/addJail")
+	@ResponseBody
+	public int addJail(T_mingjie_eighteen t_mingjie_eighteen){
+		int count=ts.addJail(t_mingjie_eighteen);
+		if(count!=0){
+			return 1;
+		}else {
+			return 2;
+		}
+	}
+
+	@RequestMapping("/inJail")
+	@ResponseBody
+	public int inJail(T_mingjie_eighteen_log t_mingjie_eighteen_log){
+		int count=ts.inJail(t_mingjie_eighteen_log);
+		if(count!=0){
+			return 1;
+		}else {
+			return 2;
+		}
+	}
+	@RequestMapping("/selectJail")
+	@ResponseBody
+	public List<T_mingjie_eighteen> selectJail(){
+		return ts.selectJail();
+	}
 }

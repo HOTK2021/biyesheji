@@ -1,8 +1,7 @@
 package org.cqipc.edu.dao;
 
 import org.apache.ibatis.annotations.Param;
-import org.cqipc.edu.bean.T_user;
-import org.cqipc.edu.bean.T_user_ov;
+import org.cqipc.edu.bean.*;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -33,5 +32,16 @@ public interface T_userDao {
 	public int removeUser(List<BigInteger> list);
 	public int addToUser_c(List<T_user> list);
 	public List<T_user>  selectUserConfirmed(List<BigInteger> list);
+	public int addIntoTrial(List<T_mingjie_trial> list);
+
+
+	//待审判
+	public List<T_user_ov> selectApprove();
+	public  int selectApproveCount();
+
+	//入狱
+	public int addJail(T_mingjie_eighteen t_mingjie_eighteen);
+	public int inJail(T_mingjie_eighteen_log t_mingjie_eighteen_log);
+	public List<T_mingjie_eighteen> selectJail();
 
 }

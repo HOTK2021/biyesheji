@@ -12,6 +12,7 @@ public interface T_mingjie_lifeanddieDao {
                                             @Param("username") String username,
                                             @Param("pageCount")int pageCount,
                                             @Param("pageSize")int pageSize);
-
+    public  int selectLifeAndDieCount(@Param("user_id") int user_id,
+                                      @Param("username") String username);
 
 }

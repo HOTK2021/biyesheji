@@ -113,4 +113,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{u.create_time},#{u.modify_time},#{u.last_login_time},#{u.ssex},#{u.description},#{u.avatar},#{u.age})
 		</foreach>
 	</insert>
+	<!--加入死簿的同时向审判表中添加一条数据用于审判-->
+	<insert id="addIntoTrial">
+		insert into t_mingjie_trial values
+		<foreach collection="list" item="t" separator=",">
+			(null,#{t.userId},#{t.trialUserId},#{t.trialTime},#{t.info},#{t.type},#{t.types})
+		</foreach>
+	</insert>
+	<!--待审判查询-->
+	<select id="selectApprove" resultType="T_user_ov">
+		select * from t_user_c where user_id=any(select userid FROM t_mingjie_trial where type=0)
+	</select>
+	<select id="selectApproveCount" resultType="int">
+		select count(*) from t_user_c where user_id=any(select userid FROM t_mingjie_trial where type=0)
+	</select>
+
+	<!--地狱-->
+	<insert id="addJail">
+		insert into t_mingjie_eighteen values (null,eightName,info,level,create_time)
+	</insert>
+	<select id="selectJail" resultType="T_mingjie_eighteen">
+		select * from t_mingjie_eighteen
+	</select>
+	<insert id="inJail">
+		insert into t_mingjie_eighteen_log values (null,userId,eighteenId,inOrOutTime,status,info)
+	</insert>
+
+
 </mapper>

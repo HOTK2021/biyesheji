@@ -24,6 +24,8 @@ public interface T_userService {
 											String username,
 											int pageCount,
 											int pageSize);
+	public  int selectLifeAndDieCount(int user_id,String username);
+
 
 	//待确认功能
 	public List<T_user_ov> userdie();
@@ -31,5 +33,16 @@ public interface T_userService {
 	public int removeUser(List<BigInteger> list);
 	public int addToUser_c(List<T_user> list);
 	public List<T_user>  selectUserConfirmed(List<BigInteger> list);
+	public int addIntoTrial(List<T_mingjie_trial> list);
+
+
+	//待审判
+	public List<T_user_ov> selectApprove();
+	public  int selectApproveCount();
+
+	//入狱
+	public int addJail(T_mingjie_eighteen t_mingjie_eighteen);
+	public int inJail(T_mingjie_eighteen_log t_mingjie_eighteen_log);
+	public List<T_mingjie_eighteen> selectJail();
 
 }

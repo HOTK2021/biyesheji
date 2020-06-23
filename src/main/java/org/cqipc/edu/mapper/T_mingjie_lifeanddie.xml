@@ -19,6 +19,14 @@
         limit #{pageCount},#{pageSize}
     </select>
     <select id="selectLifeAndDieCount" resultType="int">
-        select conut(*) from t_usr
+        select count(*)from t_user  where USER_ID=
+        any(select u.user_id as"user_id" from t_user_c u,t_mingjie_lifeanddie d where u.user_id=d.userId)
+        <if test="user_id!=0">
+            and u.user_id=#{user_id}
+        </if>
+        <if test='username!="" and username!=null'>
+            and u.username like concat('%',#{username},'%')
+        </if>
+
     </select>
 </mapper>

@@ -7,6 +7,7 @@ public class T_plague_info {
 	private BigInteger plague_id;
 	private String area_id;
 	private String happen_time;
+	private int die_count;
 	private String info;
 	public BigInteger getPlague_info_id() {
 		return plague_info_id;
@@ -38,19 +39,26 @@ public class T_plague_info {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	public T_plague_info(BigInteger plague_info_id, BigInteger plague_id, String area_id, String happen_time, String info) {
+	public int getDie_count() { return die_count; }
+	public void setDie_count(int die_count) { this.die_count = die_count; }
+
+	public T_plague_info(BigInteger plague_info_id, BigInteger plague_id, String area_id, String happen_time, int die_count, String info) {
 		this.plague_info_id = plague_info_id;
 		this.plague_id = plague_id;
 		this.area_id = area_id;
 		this.happen_time = happen_time;
+		this.die_count = die_count;
 		this.info = info;
 	}
-	public T_plague_info(BigInteger plague_id, String area_id, String happen_time, String info) {
+
+	public T_plague_info(BigInteger plague_id, String area_id, String happen_time, int die_count, String info) {
 		this.plague_id = plague_id;
 		this.area_id = area_id;
 		this.happen_time = happen_time;
+		this.die_count = die_count;
 		this.info = info;
 	}
+
 	public T_plague_info() {
 	}
 	@Override
