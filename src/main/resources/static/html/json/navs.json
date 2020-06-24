@@ -21,20 +21,40 @@
 	],
 	"orderManagement" : [
 		{
-			"title": "待确认",
+			"title": "勾魂工单",
 			"icon": "&#xe61f",
 			"href": "page/order/confirmed.html",
 			"spread": false
 		},
 		{
-			"title": "待审判",
+			"title": "判官断案",
 			"icon": "&#xe61f",
 			"href": "page/order/approve.html",
 			"spread": false
 		},{
-			"title": "待轮回",
+			"title": "十八层地狱",
 			"icon": "&#xe61f",
-			"href": "page/userInfo/addUserInfo.html",
+			"href": "",
+			"spread": false
+		}
+	],
+	"systemManagement" : [
+		{
+			"title": "瘟疫管理",
+			"icon": "&#xe61f",
+			"href": "page/system/wenyi.html",
+			"spread": false
+		},
+		{
+			"title": "日志管理",
+			"icon": "&#xe61f",
+			"href": "page/system/log.html",
+			"spread": false
+		},
+		{
+			"title": "货币和消费",
+			"icon": "&#xe61f",
+			"href": "",
 			"spread": false
 		}
 	]

@@ -17,6 +17,7 @@ function selectNotConfirmed(){
             ,height: 'auto'
             ,url: '/userdie' //数据接口
             ,page: true //开启分页
+            ,toolbar:'#toolbarDemo'
             ,cols: [[ //表头
                 {type: "numbers"}
                 ,{type:'checkbox'}

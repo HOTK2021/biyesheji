@@ -78,7 +78,6 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -86,7 +85,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		//扫描mapper
+		<!-- 扫描mapper -->
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>

@@ -25,6 +25,10 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 				dataStr = data.orderManagement;
 				//重新渲染左侧菜单
 				tab.render();
+			}else if(json=="systemManagement"){
+				dataStr = data.systemManagement;
+				//重新渲染左侧菜单
+				tab.render();
 			}
 		})
 	}

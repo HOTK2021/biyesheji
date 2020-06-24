@@ -7,23 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="../../css/index.css" media="all" />
 </head>
 <body>
-<div style="display: flex;margin-top: 20px">
-    <!-- 搜索框 -->
-    <div class="layui-form-item">
-        <label class="layui-form-label" >搜索用户</label>
-        <div class="layui-input-block" style="display: flex">
-            <input type="text" id="searchText" placeholder="ID/用户名" class="layui-input" style="width: 120%">
-            <button type="button" class="layui-btn" onclick="search()">搜索</button>
+<script type="text/html" id="toolbarDemo">
+    <div style="display: flex">
+        <!-- 搜索框 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">搜索用户</label>
+            <div class="layui-input-block" style="display: flex">
+                <input type="text" id="searchText" placeholder="ID/用户名" class="layui-input" style="width: 200px">
+                <button type="button" class="layui-btn" onclick="search()">搜索</button>
+            </div>
+        </div>
+        <!-- 确认按钮 -->
+        <div class="layui-btn-group demoTable" style="margin-left: 60%">
+            <button class="layui-btn" data-type="getCheckData">分配</button>
         </div>
     </div>
-    <!-- 确认按钮 -->
-    <div class="layui-btn-group demoTable" style="margin-left: 60%">
-        <button class="layui-btn" data-type="getCheckData">确认</button>
-    </div>
-</div>
+</script>
+<!-- 页面导航 -->
+<ul class="layui-nav layui-bg-green">
+    <li class="layui-nav-item  layui-this" pc>
+        <a href="javascript:;" onclick=""><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>未勾魂</cite></a>
+    </li>
+    <li class="layui-nav-item layui-this" pc>
+        <a href="javascript:;" onclick=""><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>已分配</cite></a>
+    </li>
+    <li class="layui-nav-item layui-this" pc>
+        <a href="javascript:;" onclick=""><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>已勾魂</cite></a>
+    </li>
+    <li class="layui-nav-item layui-this" pc>
+        <a href="javascript:;" onclick=""><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>退单</cite></a>
+    </li>
+</ul>
 <!-- 数据表 -->
 <div class="layui-card-body">
     <table id="confirmed" class="layui-hide" lay-filter="demo"></table>

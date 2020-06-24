@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日志管理</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/></head>
+<body>
+<ul class="layui-nav layui-bg-green">
+    <li class="layui-nav-item  layui-this" pc>
+        <a href="javascript:;" onclick="caozuoLog()"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>操作日志</cite></a>
+    </li>
+    <li class="layui-nav-item layui-this" pc>
+        <a href="javascript:;" onclick="loginLog()"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>登陆日志</cite></a>
+    </li>
+</ul>
+<div id="loginLog" style="display: none">
+    <!-- 数据表 -->
+    <div class="layui-card-body">
+        <table id="caozuoTable" class="layui-hide" layui-filter=""></table>
+    </div>
+</div>
+<div id="caozuoLog" style="display: none">
+    <!-- 数据表 -->
+    <div class="layui-card-body">
+        <table id="loginTable" class="layui-hide" layui-filter=""></table>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="log.js"></script>
+<script type="text/javascript" src="../../js/cacheUserInfo.js"></script>
+</body>
+</html>
