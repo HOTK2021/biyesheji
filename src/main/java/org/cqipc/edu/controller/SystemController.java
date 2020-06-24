@@ -101,4 +101,9 @@ public class SystemController {
         map.put("data",list);
         return map;
     }
+    @RequestMapping("/selectUserToPlague")
+    @ResponseBody
+    public List<T_user> selectUserToPlauge(){
+        return ss.selectUserToPlauge();
+    }
 }
