@@ -5,6 +5,7 @@ import org.cqipc.edu.bean.T_plague_info;
 import org.cqipc.edu.bean.T_plague_user;
 import org.cqipc.edu.bean.T_user;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface T_plagueDao {
@@ -19,5 +20,6 @@ public interface T_plagueDao {
     public int addPlagueUser(List<T_plague_user> list);
 
     public List<T_plague_user> selectPlagueUser(int plague_info_id);
+    public List<T_user>selectUser1(List<BigInteger> list);
 
 }

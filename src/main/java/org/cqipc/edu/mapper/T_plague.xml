@@ -29,7 +29,7 @@
         <selectKey keyProperty="plague_info_id" order="AFTER" resultType="BigInteger">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into t_plague_info values(null,#{plague_id},#{area_id},#{happen_time},#{die_count},#{info})
+        insert into t_plague_info values(null,#{plague_id},#{area_id},#{happen_time},#{die_count},#{info},#{user_id})
     </insert>
 
     <insert id="addPlagueUser">
@@ -41,5 +41,12 @@
     <!--查看瘟疫死亡人员名单-->
     <select id="selectPlagueUser" resultType="T_plague_user">
         select * from t_plague_user where plague_info_id=#{plague_info_id}
+    </select>
+    <!--从生簿中查询人员-->
+    <select id="selectUser1" resultType="T_user">
+        select * from t_user where user_id in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
     </select>
 </mapper>

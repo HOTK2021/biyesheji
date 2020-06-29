@@ -9,6 +9,7 @@ import org.cqipc.edu.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service("SystemService")
@@ -55,5 +56,10 @@ public class SystemServiceImpl implements SystemService {
     @Override
     public List<T_plague_user> selectPlagueUser(int plague_info_id){
         return tp.selectPlagueUser(plague_info_id);
+    }
+
+    @Override
+    public List<T_user> selectUser1(List<BigInteger> list) {
+        return tp.selectUser1(list);
     }
 }

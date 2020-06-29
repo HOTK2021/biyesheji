@@ -34,29 +34,45 @@ public class T_userServiceImpl implements T_userService {
 	@Override
 	//用户登录的方法
 	public Object[] Login(String username, String password) {
-		//根据用户名和密码查询用户对象
-		T_user user=tu.userLogin(username, MD5.getMd5(password));
-		System.out.println();
-		System.out.println("1");
-		if(user!=null) {
-			//根据用户ID查询用户配置信息对象
-			T_user_config userConfig=tc.findUserConfigByUid(user.getUser_id());
-			//根据用户ID查询用户权限ref对象
-			T_user_role userRole=to.findRoleByUid(user.getUser_id());
-			//根据用户的权限ID查询权限对象
-			T_role role=rd.findRoleByRid(userRole.getRole_id());
-			//根据权限id查询权限下所有对应的权限ID
-			List<BigInteger> ids=trm.findRoleMenuByRid(role.getRole_id());
-			//根据所有的权限ID查询所有的权限对象
-			List<T_menu> list=tm.findMenuByMid(ids);
-			if(user.getStatus()==1){
-				return new Object[] {user,userConfig};
-			}else{
-				return  new Object[] {"not"};
+
+			//根据用户名和密码查询用户对象
+			T_user user=tu.userLogin(username, MD5.getMd5(password));
+			System.out.println();
+			System.out.println("1");
+
+			if(user!=null) {
+				if(user.getStatus()==1){
+					try {
+						//根据用户ID查询用户配置信息对象
+						T_user_config userConfig = tc.findUserConfigByUid(user.getUser_id());
+						//根据用户ID查询用户权限ref对象
+						System.out.println("-----------userid------------");
+						System.out.println(user.getUser_id());
+						T_user_role userRole = to.findRoleByUid(user.getUser_id());
+						System.out.println("-----------userRole------------");
+						System.out.println(userRole);
+						//根据用户的权限ID查询权限对象
+						T_role role = rd.findRoleByRid(userRole.getRole_id());
+						System.out.println("------------role-----------");
+						System.out.println(role);
+						//根据权限id查询权限下所有对应的权限ID
+						List<BigInteger> ids = trm.findRoleMenuByRid(role.getRole_id());
+						System.out.println("------------ids-----------");
+						System.out.println(ids);
+						//根据所有的权限ID查询所有的权限对象
+						List<T_menu> list = tm.findMenuByMid(ids);
+						System.out.println("------------list-----------");
+						System.out.println(list);
+						return new Object[]{user, userConfig};
+					}catch (Exception e){
+						return new Object[] {"error1"};
+					}
+				}else{
+					return  new Object[] {"not"};
+				}
+			}else {
+				return new Object[] {"error"};
 			}
-		}else {
-			return new Object[] {"error"};
-		}
 	}
 
 	@Override

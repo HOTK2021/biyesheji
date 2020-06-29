@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cqipc.edu.dao.T_job_logDao">
+    <insert id="addLog">
+        insert into t_job_log values
+        (null,#{job_id},#{bean_name},#{method_name},#{params},#{status},#{error},#{time},#{create_time})
+    </insert>
+    <insert id="addLoginLog">
+        insert into t_login_log values (#{username},#{login_time},#{location},#{ip})
+    </insert>
+    <select id="selectJobLog" resultType="T_job_log">
+        select * from t_job_log order by log_id desc
+    </select>
+    <select id="selectJobLogCount" resultType="int">
+        select count(*) from t_job_log
+    </select>
+    <select id="selectLoginLog" resultType="T_login_log">
+        select * from t_login_log  order by login_time desc
+    </select>
+    <select id="selectLoginLogCount" resultType="int">
+        select  count(*) from t_login_log
+    </select>
+</mapper>

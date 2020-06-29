@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
@@ -25,8 +28,8 @@ import java.util.*;
 public class UserController {
 	@Autowired
 	T_userService ts;
-	
 
+	@SystemControllerLog(description = "用户登录")
 	@RequestMapping("userLogin")
 	@ResponseBody
 	public Object[] userLogin(@RequestParam("username")String username,
@@ -50,22 +53,43 @@ public class UserController {
 		}else if(param[0]=="not"){
 			par[0]="您不是公职人员，不能登录！";
 			return par;
-		}else {
-			model.addAttribute("LoginParams", param);
+		}else if(param[0]=="error1"){
+			par[0]="您在系统中的权限未完善，不能登录！如要登录，请联系管理员!";
+			return par;
+		} else  {
+			//model.addAttribute("param", param);
+
+
+			RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();//这个RequestContextHolder是Springmvc提供来获得请求的东西
+			HttpServletRequest request1 = ((ServletRequestAttributes)requestAttributes).getRequest();
+			HttpSession session = request1.getSession();
+			session.setAttribute("LoginParams",param);
+//			Object[] param1=(Object[])session.getAttribute("param");
+//			//T_user user = (T_user)session.getAttribute("param");
+//			System.out.println("-------打印param--------");
+//
+//			System.out.println(param1[0]);
+//			//System.out.println(user);
+//			System.out.println("打印结束");
 			par[0]="ok";
 			return par;
 		}
 	}
+	@SystemControllerLog(description = "登录成功")
 	@RequestMapping("loginSuccess")
 	@ResponseBody
 	public Object[] loginSuccess(HttpSession session) {
 		//由于在上一个URL中已经保存了登录信息在session中，所以此时直接从session中获取值，由此可见，SpringMVC的
 		//session和servletAPI中的session是同一个
 		Object[] param=(Object[])session.getAttribute("LoginParams");
+		System.out.println("打印param");
 		System.out.println(param);
+		System.out.println("打印结束");
 		return param;
 	}
 
+
+	@SystemControllerLog(description = "添加用户")
 	@RequestMapping("/adduser")
 	@ResponseBody
 	public int adduser(
@@ -115,19 +139,21 @@ public class UserController {
 		}
 
 	}
-	@RequestMapping("selectDeptAll")
+	@SystemControllerLog(description = "select")
+	@RequestMapping("/selectDeptAll")
 	@ResponseBody
 	public List<T_dept> selectDeptAll(){
 		return ts.selectDeptAll();
 	}
 	//查询死溥中 状态为1 的人 且能转世的人
+	@SystemControllerLog(description = "select")
 	@RequestMapping("/selectUserDie")
 	@ResponseBody
 	public List<T_user> selectUserDie(){
 		return ts.selectUserDie();
 	}
 
-
+	@SystemControllerLog(description = "select")
 	@RequestMapping("/selectUserInfoAll")
 	@ResponseBody
 	public Map<String,Object> selectUserInfoAll(@RequestParam(required = false,defaultValue = "0",value = "user_id") int user_id,
@@ -157,6 +183,7 @@ public class UserController {
 	}
 
 	//死簿查询
+	@SystemControllerLog(description = "select")
 	@RequestMapping("selectUserDieAll")
 	@ResponseBody
 	public Map<String,Object> selectUserDieAll(@RequestParam(required = false,defaultValue = "0",value = "user_id") int user_id,
@@ -183,6 +210,7 @@ public class UserController {
 		return 	map;
 	}
 	//查询用户死亡待确认名单
+	@SystemControllerLog(description = "select")
 	@RequestMapping("/userdie")
 	@ResponseBody
 	public  Map<String,Object> userdie(){
@@ -197,6 +225,7 @@ public class UserController {
 	}
 
 	//待确认人员 从生簿到死簿
+	@SystemControllerLog(description = "确认死亡")
 	@RequestMapping("/RemoveAndAdd")
 	@ResponseBody
 	public int  RemoveAndAdd(@RequestParam(value = "user_id[]")int[] user_id){
@@ -230,6 +259,7 @@ public class UserController {
 
 
 	//待审判
+	@SystemControllerLog(description = "select")
 	@RequestMapping("/selectApprove")
 	@ResponseBody
 	public  Map<String,Object> selectApprove(){
@@ -245,6 +275,7 @@ public class UserController {
 
 
 	//监狱
+	@SystemControllerLog(description = "添加地狱")
 	@RequestMapping("/addJail")
 	@ResponseBody
 	public int addJail(T_mingjie_eighteen t_mingjie_eighteen){
@@ -256,6 +287,7 @@ public class UserController {
 		}
 	}
 
+	@SystemControllerLog(description = "关入地狱")
 	@RequestMapping("/inJail")
 	@ResponseBody
 	public int inJail(T_mingjie_eighteen_log t_mingjie_eighteen_log){
@@ -266,6 +298,9 @@ public class UserController {
 			return 2;
 		}
 	}
+
+	//
+	@SystemControllerLog(description = "select")
 	@RequestMapping("/selectJail")
 	@ResponseBody
 	public List<T_mingjie_eighteen> selectJail(){
