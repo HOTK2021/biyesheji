@@ -44,7 +44,7 @@ public class SystemController {
         map.put("count",count);
         return map;
     }
-
+    //查询携带瘟疫的人员
     @SystemControllerLog(description = "select")
     @RequestMapping("/selectUserToPlague")
     @ResponseBody
