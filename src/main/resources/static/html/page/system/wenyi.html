@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../css/public.css" media="all" />
 </head>
 <body>
+
 <!-- 页面导航 -->
 <ul class="layui-nav layui-bg-green">
     <li class="layui-nav-item  layui-this" pc>
@@ -38,8 +39,8 @@
         <div class="layui-form-item userAddress">
             <label class="layui-form-label">散播地区</label>
             <div class="layui-input-block" style="width: 30%;">
-                <select name="province" lay-filter="province" class="province">
-                    <option value="">请选择市</option>
+                <select name="province" lay-filter="province" class="province" lay-verify="required">
+                    <option value="">请选择省</option>
                 </select>
             </div>
             <br>
@@ -85,6 +86,11 @@
 </div>
 <div style="display: none" id="wenyijilu">
     <table id="wenyitable" class="layui-hide" layui-filter=""></table>
+</div>
+<div id="dieUserDiv" style="display: none">
+    <table id="dieUserTable" class="layui-hide" layui-filter="">
+
+    </table>
 </div>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="wenyi.js"></script>

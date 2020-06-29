@@ -15,6 +15,12 @@ layui.use(['jquery','layer','address','form','laydate'],function () {
         trigger: 'click',
     });
 
+    $(function () {
+        faqiernyi();
+        plague();
+        person();
+    })
+
     form.on('submit(speedPlague)',function () {
         layer.closeAll();
         var area_id = $("#area").val();
@@ -33,12 +39,6 @@ layui.use(['jquery','layer','address','form','laydate'],function () {
             }
         })
         return false;
-    })
-
-    $(function () {
-        faqiernyi();
-        plague();
-        person();
     })
 
     form.render('select');
@@ -83,29 +83,82 @@ function wenyijilu() {
     $("#wenyijilu").css('display','')
 }
 
-layui.use('table',function () {
+layui.use(['table','jquery'],function () {
+    var $ = layui.$;
     var table = layui.table;
     table.render({
         elem: '#wenyitable'
         ,height: 'auto'
-        ,url: '' //数据接口
+        ,url: '/selectPlaugeInfo' //数据接口
         ,page: true //开启分页
         ,cols: [[
-            {type:'numbers'}
-            ,{type: 'checkbox'}
-            ,{field: 'plague_info_id', title: 'ID', sort: true}
-            ,{field: 'area_id', title: '散播地区'}
+            {field: 'plague_info_id', title: 'ID', sort: true}
+            ,{field: 'address', title: '散播地区',templet:function (d) {
+                    var code = (d.area_id).toString();
+                    var address = "";
+                    $.ajax({
+                        url:'../../json/address.json',
+                        type:'get',
+                        dataType:'json',
+                        async:false,
+                        success:function (data) {
+                            for (var i=0;i<data.length;i++){
+                                if(data[i].code==code.slice(0,2)){
+                                    address+=data[i].name
+                                }
+                                for (var j=0;j<data[i].childs.length;j++){
+                                    if(data[i].childs[j].code==code.slice(0,4)){
+                                        address+=data[i].childs[j].name
+                                    }
+                                    for (var k=0;k<data[i].childs[j].childs.length;k++){
+                                        if(data[i].childs[j].childs[k].code == code){
+                                            address+=data[i].childs[j].childs[k].name
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    return '<span>'+address+'</span>'
+                }}
             ,{field: 'die_count', title: '死亡人数',sort: true}
             ,{field: 'happen_time', title: '散播时间',sort: true}
+            ,{field: 'btn',title: '操作',templet:function (d) {
+                var plague_info_id = d.plague_info_id;
+                return '<button class="layui-btn" onclick="showDieUser('+plague_info_id+')">死亡名单</button>'
+            }}
         ]]
     })
 })
 
+function showDieUser(plague_info_id) {
+    layui.use(['table','jquery'],function () {
+        var $ = layui.$,
+            table = layui.table,
+            layer = layui.layer;
+        table.render({
+            elem:'#dieUserTable'
+            ,height: 'auto'
+            ,url: '/selectPlagueUser?plague_info_id='+plague_info_id //数据接口
+            ,cols: [[
+                {field: 'id',title: 'ID',sort: true,width: 200}
+                ,{field: 'userid',title: '用户ID',sort: true,width: 200}
+                ,{field: 'username',title: '用户名',width: 200}
+            ]]
+        })
 
-function getCode() {
-    var code = $("#area").val();
-    alert(code)
+        layer.open({
+            type:1,
+            title:'死亡名单',
+            area:['600px','400px'],
+            content: $("#dieUserDiv"),
+            offset:'auto',
+            end:function () {
+                $("#divs").css("display","none");
+            }
+        })
+    })
 }
-
 
 

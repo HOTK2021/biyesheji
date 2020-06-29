@@ -1,7 +1,13 @@
 var $;
 
 layui.use(['layer','jquery'],function () {
-    $=layui.$,layer=layui.layer;
+    $=layui.$;
+    var layer=layui.layer;
+
+    $(function () {
+        caozuoLog();
+    })
+
 });
 
 function caozuoLog() {
@@ -19,16 +25,19 @@ layui.use('table',function () {
     table.render({
         elem: '#caozuoTable'
         ,height: 'auto'
-        ,url: '' //数据接口
+        ,url: '/selectJobLog' //数据接口
+        ,loading: true
         ,page: true //开启分页
         ,cols: [[
-            {type:'numbers'}
-            ,{type: 'checkbox'}
-            ,{field: 'plague_info_id', title: 'ID', sort: true}
-            ,{field: 'plague_id', title: '瘟疫'}
-            ,{field: 'area', title: '散播地区'}
-            ,{field: 'dieCount', title: '死亡人数',sort: true}
-            ,{field: 'happen_time', title: '散播时间',sort: true}
+            {field: 'log_id', title: 'ID', sort: true}
+            ,{field: 'job_id', title: '操作ID'}
+            ,{field: 'bean_name', title: 'BEAN'}
+            ,{field: 'method_name', title: '方法名称'}
+            ,{field: 'params', title: '参数'}
+            ,{field: 'status', title: '状态'}
+            ,{field: 'error', title: '异常'}
+            ,{field: 'time', title: '耗时（毫秒）',sort: true}
+            ,{field: 'create_time', title: '创建时间',sort: true}
         ]]
     })
     table.render({
