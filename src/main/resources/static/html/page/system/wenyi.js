@@ -23,7 +23,17 @@ layui.use(['jquery','layer','address','form','laydate'],function () {
 
     form.on('submit(speedPlague)',function () {
         layer.closeAll();
-        var area_id = $("#area").val();
+        var area_id;
+        var area = $('#area').val();
+        var city = $('#city').val();
+        var province = $('#province').val();
+        if(area!=''){
+            area_id = area;
+        }else if(area==''&&city!=''){
+            area_id = city;
+        }else{
+            area_id = province;
+        }
         var data =  $("#speedPlague").serialize();
         $.ajax({
             type: 'post',

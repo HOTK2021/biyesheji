@@ -84,7 +84,7 @@ public class UserController {
 		//session和servletAPI中的session是同一个
 		Object[] param=(Object[])session.getAttribute("LoginParams");
 		System.out.println("打印param");
-		System.out.println(param);
+		System.out.println(param[0]);
 		System.out.println("打印结束");
 		return param;
 	}
