@@ -170,8 +170,10 @@ public class T_userServiceImpl implements T_userService {
 
 	//待审判
 	@Override
-	public List<T_user_ov> selectApprove() {
-		return tu.selectApprove();
+	public List<T_user_ov> selectApprove(int pageCount,
+										 int pageSize) {
+		int p=(pageCount-1)*pageSize;
+		return tu.selectApprove(p,pageSize);
 	}
 
 	@Override

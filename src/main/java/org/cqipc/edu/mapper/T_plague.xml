@@ -7,7 +7,7 @@
         select * from t_plague where plague_status=1
     </select>
     <select id="selectPlaugeInfo" resultType="T_plague_info">
-        select * from t_plague_info
+        select * from t_plague_info limit #{pageCount},#{pageSize}
     </select>
     <select id="selectPlaugeInfoCount" resultType="int">
         select count(*) from t_plague_info

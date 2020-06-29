@@ -25,10 +25,10 @@ import java.util.*;
 
 @Controller
 @SessionAttributes("LoginParams")
+
 public class UserController {
 	@Autowired
 	T_userService ts;
-
 	@SystemControllerLog(description = "用户登录")
 	@RequestMapping("userLogin")
 	@ResponseBody
@@ -57,17 +57,18 @@ public class UserController {
 			par[0]="您在系统中的权限未完善，不能登录！如要登录，请联系管理员!";
 			return par;
 		} else  {
-			//model.addAttribute("param", param);
+			model.addAttribute("LoginParams", param);
+			System.out.println("*****测试model");
+			Object[] p= (Object[]) model.getAttribute("LoginParams");
+			System.out.println(p[0]);
 
-
-			RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();//这个RequestContextHolder是Springmvc提供来获得请求的东西
-			HttpServletRequest request1 = ((ServletRequestAttributes)requestAttributes).getRequest();
-			HttpSession session = request1.getSession();
-			session.setAttribute("LoginParams",param);
+//			RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();//这个RequestContextHolder是Springmvc提供来获得请求的东西
+//			HttpServletRequest request1 = ((ServletRequestAttributes)requestAttributes).getRequest();
+//			HttpSession session = request1.getSession();
+//			session.setAttribute("LoginParams",param);
 //			Object[] param1=(Object[])session.getAttribute("param");
 //			//T_user user = (T_user)session.getAttribute("param");
 //			System.out.println("-------打印param--------");
-//
 //			System.out.println(param1[0]);
 //			//System.out.println(user);
 //			System.out.println("打印结束");
@@ -76,7 +77,7 @@ public class UserController {
 		}
 	}
 	@SystemControllerLog(description = "登录成功")
-	@RequestMapping("loginSuccess")
+	@RequestMapping("/loginSuccess")
 	@ResponseBody
 	public Object[] loginSuccess(HttpSession session) {
 		//由于在上一个URL中已经保存了登录信息在session中，所以此时直接从session中获取值，由此可见，SpringMVC的
@@ -262,8 +263,9 @@ public class UserController {
 	@SystemControllerLog(description = "select")
 	@RequestMapping("/selectApprove")
 	@ResponseBody
-	public  Map<String,Object> selectApprove(){
-		List<T_user_ov> list=ts.selectApprove();
+	public  Map<String,Object> selectApprove(@RequestParam(required = false,value = "page",defaultValue = "1")int page,
+											 @RequestParam(required = false,defaultValue = "10",value = "limit")int limit){
+		List<T_user_ov> list=ts.selectApprove(page,limit);
 		int count=ts.selectApproveCount();
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("code",0);

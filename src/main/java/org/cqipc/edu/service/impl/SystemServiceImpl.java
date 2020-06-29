@@ -1,5 +1,6 @@
 package org.cqipc.edu.service.impl;
 
+import org.apache.ibatis.annotations.Param;
 import org.cqipc.edu.bean.T_plague;
 import org.cqipc.edu.bean.T_plague_info;
 import org.cqipc.edu.bean.T_plague_user;
@@ -24,8 +25,10 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
-    public List<T_plague_info> selectPlaugeInfo() {
-        return tp.selectPlaugeInfo();
+    public List<T_plague_info> selectPlaugeInfo(int pageCount,
+                                                int pageSize) {
+        int p=(pageCount-1)*pageSize;
+        return tp.selectPlaugeInfo(p,pageSize);
     }
 
     @Override

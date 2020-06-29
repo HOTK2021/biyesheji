@@ -123,6 +123,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--待审判查询-->
 	<select id="selectApprove" resultType="T_user_ov">
 		select * from t_user_c where user_id=any(select userid FROM t_mingjie_trial where type=0)
+		limit #{pageCount},#{pageSize}
 	</select>
 	<select id="selectApproveCount" resultType="int">
 		select count(*) from t_user_c where user_id=any(select userid FROM t_mingjie_trial where type=0)

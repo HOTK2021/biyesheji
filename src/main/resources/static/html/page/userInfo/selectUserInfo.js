@@ -26,7 +26,7 @@ function selectUserInfo(url){
                 ,{field: 'username', title: '用户名'}
                 ,{field: 'totalAge', title: '剩余寿命'}
                 ,{field: 'create_time', title: '出生日期', sort: true}
-                ,{field: 'modify_time', title: '最后登陆', sort: true}
+                ,{field: 'last_login_time', title: '最后登陆', sort: true}
             ]]
         });
 

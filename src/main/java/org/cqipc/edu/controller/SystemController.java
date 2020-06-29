@@ -34,8 +34,9 @@ public class SystemController {
     @SystemControllerLog(description = "select")
     @RequestMapping("/selectPlaugeInfo")
     @ResponseBody
-    public Map<String,Object> selectPlaugeInfo(){
-        List<T_plague_info> list=ss.selectPlaugeInfo();
+    public Map<String,Object> selectPlaugeInfo(@RequestParam(required = false,value = "page",defaultValue = "1")int page,
+                                               @RequestParam(required = false,defaultValue = "10",value = "limit")int limit){
+        List<T_plague_info> list=ss.selectPlaugeInfo(page,limit);
         int count=ss.selectPlaugeInfoCount();
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("code",0);
@@ -52,6 +53,26 @@ public class SystemController {
         return ss.selectUserToPlauge();
     }
 
+    @SystemControllerLog(description = "select")
+    @RequestMapping("/cs1")
+    @ResponseBody
+    public Map<String,Object> cs(@RequestParam(required = false,value = "page",defaultValue = "1")int page,
+                                 @RequestParam(required = false,defaultValue = "10",value = "limit")int limit){
+        List<BigInteger> l2=new ArrayList<>();
+        l2.add(BigInteger.valueOf(29));
+        l2.add(BigInteger.valueOf(38));
+        List<T_user> list=ss.selectUser1(l2);
+        System.out.println(list);
+        int count=2;
+        int count2=ts.addToUser_c(list);
+        System.out.println(count2);
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("code",0);
+        map.put("msg","");
+        map.put("data",list);
+        map.put("count",count);
+        return map;
+    }
 
     //确认发布瘟疫
     @SystemControllerLog(description = "发布瘟疫")
@@ -62,8 +83,7 @@ public class SystemController {
         List<T_user> list=ss.selectUserToPlauge();
         int count=ss.selectPlaugeInfoCount();
         List<T_user> t_user=ts.selectUserAll((t_plague_info.getUser_id()).intValue(),"",1,1);
-        T_user user=new T_user();
-        user=t_user.get(0);
+        T_user user= t_user.get(0);
         System.out.println(user);
 
         List<BigInteger> list1=new ArrayList<>();
@@ -88,16 +108,18 @@ public class SystemController {
         }
         System.out.println(l2);
 
-        int count1=ts.removeUser(randomSeries);
-        List<T_user> list2=ss.selectUser1(l2);
+
+        List<T_user> list2=ss.selectUser1(randomSeries);
         String date=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
         for(T_user c:list2){
             c.setCreate_time(date);
             c.setDescription("瘟疫");
         }
         System.out.println(list2);
-        int count2=ts.addToUser_c(list2);
 
+        //得先添加 再删除
+        int count2=ts.addToUser_c(list2);
+        int count1=ts.removeUser(randomSeries);
         //向瘟疫记录表中添加数据
         int countPlague=ss.addPlague(t_plague_info);
         //向t_plague_user表中添加死亡人员信息
@@ -114,7 +136,7 @@ public class SystemController {
         }
         System.out.println(list3);
         int count3=ts.addIntoTrial(list3);
-        if (count2!=0&&count1!=0&&count3!=0){
+        if (count2!=0&&count1!=0&&count3!=0&&countPU!=0&&countPlague!=0){
             return 1;
         }else {
             return 2;
@@ -134,6 +156,8 @@ public class SystemController {
         return map;
     }
 
+
+
     @SystemControllerLog (description = "测试")
     @RequestMapping("/hello")
     @ResponseBody
@@ -145,8 +169,9 @@ public class SystemController {
     @SystemControllerLog(description = "select")
     @RequestMapping("/selectJobLog")
     @ResponseBody
-    public Map<String,Object>selectJobLog(){
-       List<T_job_log> list=tjl.selectJobLog();
+    public Map<String,Object>selectJobLog(@RequestParam(required = false,value = "page",defaultValue = "1")int page,
+                                          @RequestParam(required = false,defaultValue = "10",value = "limit")int limit){
+       List<T_job_log> list=tjl.selectJobLog(page, limit);
        int count=tjl.selectJobLogCount();
        Map<String,Object> map=new HashMap<String, Object>();
        map.put("code",0);
@@ -160,8 +185,9 @@ public class SystemController {
     @SystemControllerLog(description = "select")
     @RequestMapping("/selectLoginLog")
     @ResponseBody
-    public Map<String,Object>selectLoginLog(){
-        List<T_login_log> list=tjl.selectLoginLog();
+    public Map<String,Object>selectLoginLog(@RequestParam(required = false,value = "page",defaultValue = "1")int page,
+                                            @RequestParam(required = false,defaultValue = "10",value = "limit")int limit){
+        List<T_login_log> list=tjl.selectLoginLog(page, limit);
         int count=tjl.selectLoginLogCount();
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("code",0);

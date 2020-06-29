@@ -11,13 +11,13 @@
         insert into t_login_log values (#{username},#{login_time},#{location},#{ip})
     </insert>
     <select id="selectJobLog" resultType="T_job_log">
-        select * from t_job_log order by log_id desc
+        select * from t_job_log order by log_id desc limit #{pageCount},#{pageSize}
     </select>
     <select id="selectJobLogCount" resultType="int">
         select count(*) from t_job_log
     </select>
     <select id="selectLoginLog" resultType="T_login_log">
-        select * from t_login_log  order by login_time desc
+        select * from t_login_log  order by login_time desc limit #{pageCount},#{pageSize}
     </select>
     <select id="selectLoginLogCount" resultType="int">
         select  count(*) from t_login_log

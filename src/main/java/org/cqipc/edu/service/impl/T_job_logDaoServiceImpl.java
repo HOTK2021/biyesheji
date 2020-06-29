@@ -23,8 +23,9 @@ public class T_job_logDaoServiceImpl implements T_job_logService {
     public int addLoginLog(T_login_log t_login_log){return t_job_logDao.addLoginLog(t_login_log);}
 
     @Override
-    public List<T_job_log> selectJobLog() {
-        return t_job_logDao.selectJobLog();
+    public List<T_job_log> selectJobLog(int pageCount, int pageSize) {
+        int p=(pageCount-1)*pageSize;
+        return t_job_logDao.selectJobLog(p,pageSize);
     }
 
     @Override
@@ -33,8 +34,9 @@ public class T_job_logDaoServiceImpl implements T_job_logService {
     }
 
     @Override
-    public List<T_login_log> selectLoginLog() {
-        return t_job_logDao.selectLoginLog();
+    public List<T_login_log> selectLoginLog(int pageCount, int pageSize) {
+        int p=(pageCount-1)*pageSize;
+        return t_job_logDao.selectLoginLog(p,pageSize);
     }
 
     @Override

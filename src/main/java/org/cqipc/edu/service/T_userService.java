@@ -37,7 +37,8 @@ public interface T_userService {
 
 
 	//待审判
-	public List<T_user_ov> selectApprove();
+	public List<T_user_ov> selectApprove(@Param("pageCount")int pageCount,
+										 @Param("pageSize")int pageSize);
 	public  int selectApproveCount();
 
 	//入狱
