@@ -42,6 +42,7 @@ public class UserController {
 		 * 又由于此操作是一个response操作，在ajax重新定向到下一个URL之后sessionID已经找不到了，所以要在返回
 		 * 值之前通过request get出session
 		 * */
+		System.out.println("测试赛");
 		System.out.println(username);
 		System.out.println(MD5.getMd5(password));
 		Object[] param=ts.Login(username, password);

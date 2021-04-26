@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!--向死簿中添加-->
 	<insert id="addToUser_c">
-		insert into t_user_c values
+		insert into t_user_s values
 		<foreach collection="list" item="u" separator=",">
 			(#{u.user_id},#{u.username},#{u.password},#{u.dept_id},#{u.email},#{u.mobile},#{u.status},
 			#{u.create_time},#{u.modify_time},#{u.last_login_time},#{u.ssex},#{u.description},#{u.avatar},#{u.age})
@@ -122,11 +122,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!--待审判查询-->
 	<select id="selectApprove" resultType="T_user_ov">
-		select * from t_user_c where user_id=any(select userid FROM t_mingjie_trial where type=0)
+		select * from t_user_s where user_id=any(select userid FROM t_mingjie_trial where type=0)
 		limit #{pageCount},#{pageSize}
 	</select>
 	<select id="selectApproveCount" resultType="int">
-		select count(*) from t_user_c where user_id=any(select userid FROM t_mingjie_trial where type=0)
+		select count(*) from t_user_s where user_id=any(select userid FROM t_mingjie_trial where type=0)
 	</select>
 
 	<!--地狱-->

@@ -7,8 +7,8 @@ public class T_plague_info {
 	private BigInteger plague_id;
 	private String area_id;
 	private String happen_time;
-	private int die_count;
 	private String info;
+	private int die_count;
 	private BigInteger user_id;
 	public BigInteger getPlague_info_id() {
 		return plague_info_id;
