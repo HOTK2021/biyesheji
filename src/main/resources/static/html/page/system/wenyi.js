@@ -42,9 +42,9 @@ layui.use(['jquery','layer','address','form','laydate'],function () {
             data:data,
             success:function (data) {
                 if(data==1){
-                    layer.msg("散播成功！",{icon:6});
+                    layer.msg("广播成功！",{icon:6});
                 }else{
-                    layer.msg("散播失败！",{icon:5});
+                    layer.msg("广播失败！",{icon:5});
                 }
             }
         })
@@ -103,7 +103,7 @@ layui.use(['table','jquery'],function () {
         ,page: true //开启分页
         ,cols: [[
             {field: 'plague_info_id', title: 'ID', sort: true}
-            ,{field: 'address', title: '散播地区',templet:function (d) {
+            ,{field: 'address', title: '广播区域',templet:function (d) {
                     var code = (d.area_id).toString();
                     var address = "";
                     $.ajax({
@@ -132,8 +132,8 @@ layui.use(['table','jquery'],function () {
                     })
                     return '<span>'+address+'</span>'
                 }}
-            ,{field: 'die_count', title: '死亡人数',sort: true}
-            ,{field: 'happen_time', title: '散播时间',sort: true}
+            ,{field: 'die_count', title: '通知人数',sort: true}
+            ,{field: 'happen_time', title: '广播时间',sort: true}
             ,{field: 'btn',title: '操作',templet:function (d) {
                 var plague_info_id = d.plague_info_id;
                 return '<button class="layui-btn" onclick="showDieUser('+plague_info_id+')">死亡名单</button>'
@@ -160,7 +160,7 @@ function showDieUser(plague_info_id) {
 
         layer.open({
             type:1,
-            title:'死亡名单',
+            title:'广播名单',
             area:['600px','400px'],
             content: $("#dieUserDiv"),
             offset:'auto',
