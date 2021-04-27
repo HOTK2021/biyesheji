@@ -13,7 +13,7 @@
 			"spread": false
 		},
 		{
-			"title": "生/死簿",
+			"title": "住院病床",
 			"icon": "&#xe63c",
 			"href": "page/userInfo/lifeAndDie.html",
 			"spread": false
@@ -21,18 +21,18 @@
 	],
 	"orderManagement" : [
 		{
-			"title": "勾魂工单",
+			"title": "护士工单",
 			"icon": "&#xe61f",
 			"href": "page/order/confirmed.html",
 			"spread": false
 		},
 		{
-			"title": "判官断案",
+			"title": "是否出/住院",
 			"icon": "&#xe61f",
 			"href": "page/order/approve.html",
 			"spread": false
 		},{
-			"title": "十八层地狱",
+			"title": "住院部分配",
 			"icon": "&#xe61f",
 			"href": "",
 			"spread": false
@@ -40,7 +40,7 @@
 	],
 	"systemManagement" : [
 		{
-			"title": "瘟疫管理",
+			"title": "广播管理",
 			"icon": "&#xe61f",
 			"href": "page/system/wenyi.html",
 			"spread": false

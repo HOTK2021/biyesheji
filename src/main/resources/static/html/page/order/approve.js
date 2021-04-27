@@ -20,7 +20,7 @@ function selectNotApprove(){
                 ,{field: 'user_id', title: 'ID', sort: true, }
                 ,{field: 'username', title: '用户名'}
                 ,{field: 'ssex', title: '性别'}
-                ,{field: 'dieTime', title: '死亡时间',sort: true}
+                ,{field: 'dieTime', title: '住院时间',sort: true}
             ]]
         });
 

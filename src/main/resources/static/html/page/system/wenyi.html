@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>瘟疫管理</title>
+    <title>广播通知管理</title>
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="../../css/public.css" media="all" />
 </head>
@@ -11,60 +11,60 @@
 <!-- 页面导航 -->
 <ul class="layui-nav layui-bg-green">
     <li class="layui-nav-item  layui-this" pc>
-        <a href="javascript:;" onclick="faqiernyi()"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>发起瘟疫</cite></a>
+        <a href="javascript:;" onclick="faqiernyi()"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>发起广播</cite></a>
     </li>
     <li class="layui-nav-item layui-this" pc>
         <a href="javascript:;" onclick="wenyijilu()"><i class="layui-icon"
-                                                        data-icon="&#xe63c;">&#xe63c;</i><cite>瘟疫记录</cite></a>
+                                                        data-icon="&#xe63c;">&#xe63c;</i><cite>广播记录</cite></a>
     </li>
 </ul>
 <div style="display: none;margin-top: 10px;margin-left: 30%" id="faqiwenyi">
     <form class="layui-form layui-row" id="speedPlague">
         <div class="layui-form-item">
-            <label class="layui-form-label">传播者</label>
+            <label class="layui-form-label">广播通知人</label>
             <div class="layui-input-block" style="width: 30%;">
                 <select id="person" lay-verify="required" name="user_id">
-                    <option value="">请选择传播者</option>
+                    <option value="">请选择广播人</option>
                 </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">瘟疫</label>
+            <label class="layui-form-label">广播</label>
             <div class="layui-input-block" style="width: 30%;">
                 <select id="plague" lay-verify="required" name="plague_id">
-                    <option value="">请选择瘟疫</option>
+                    <option value="">请选择广播类型</option>
                 </select>
             </div>
         </div>
         <div class="layui-form-item userAddress">
-            <label class="layui-form-label">散播地区</label>
+            <label class="layui-form-label">广播地区地区</label>
             <div class="layui-input-block" style="width: 30%;">
                 <select id="province" name="province" lay-filter="province" class="province" lay-verify="required">
-                    <option value="">请选择省</option>
+                    <option value="">请选择区域</option>
                 </select>
             </div>
             <br>
             <div class="layui-input-block" style="width: 30%;">
                 <select id="city" name="city" lay-filter="city" disabled>
-                    <option value="">请选择市</option>
+                    <option value="">请选择部门</option>
                 </select>
             </div>
             <br>
             <div class="layui-input-block" style="width: 30%;">
                 <select name="area" id="area" lay-filter="area" disabled>
-                    <option value="">请选择县/区</option>
+                    <option value="">请选择科室/办公室</option>
                 </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">死亡人数</label>
+            <label class="layui-form-label">通知人数</label>
             <div class="layui-input-block" style="width: 30%;">
                 <input type="text" name="die_count" required  lay-verify="required"
                        placeholder="请输入死亡人数" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">散播时间</label>
+            <label class="layui-form-label">广播时间</label>
             <div class="layui-input-block" style="width: 30%;">
                 <input type="text" value="" name="happen_time" placeholder="请输入散播时间" lay-verify="required"
                        readonly class="layui-input speedTime">
