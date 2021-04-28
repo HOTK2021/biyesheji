@@ -15,26 +15,11 @@
         <div class="layui-upload-list">
             <img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace">
         </div>
-        <button type="button" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i> 掐指一算，我要换一个头像了</button>
+        <button type="button" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i> 添加入职员工的证件照</button>
         <p>由于是纯静态页面，所以只能显示一张随机的图片</p>
     </div>
     <div class="layui-col-md6 layui-col-xs12">
-        <div class="layui-form-item">
-            <label class="layui-form-label">职位</label>
-            <div class="layui-input-block">
-                <select id="plife" lay-verify="required">
-                    <option value="">请选择职位</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">入职时间</label>
-            <div class="layui-input-block">
-                <select id="lifetime" lay-verify="required">
-                    <option value="">请选择入职时间</option>
-                </select>
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
@@ -52,13 +37,33 @@
             <div class="layui-input-block">
                <select name="dept_id" id="dept" lay-verify="required">
                    <option value="">请选择部门</option>
-                   <option value="1">开发部</option>
-                   <option value="2">开发一部</option>
-                   <option value="3">开发二部</option>
-                   <option value="4">市场部</option>
-                   <option value="5">人事部</option>
-                   <option value="6">测试部</option>
+                   <option value="1">护理部门</option>
+                   <option value="2">诊疗部门</option>
+                   <option value="3">中心检查部门</option>
+                   <option value="4">药剂部门</option>
+                   <option value="5">营养部门</option>
+                   <option value="6">病史资料部门</option>
+                   <option value="7">事务部门</option>
+                   <option value="8">社会医疗部门</option>
+                   <option value="9">设备服务部门</option>
+                   <option value="10">环境整备部门</option>
                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <select id="plife" lay-verify="required">
+                    <option value="">请选择职位</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">入职时间</label>
+            <div class="layui-input-block">
+                <select id="lifetime" lay-verify="required">
+                    <option value="">请选择入职时间</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item" pane="">
@@ -66,7 +71,6 @@
             <div class="layui-input-block userSex">
                 <input type="radio" name="ssex" value="男" title="男" checked="checked">
                 <input type="radio" name="ssex" value="女" title="女">
-                <input type="radio" name="ssex" value="保密" title="保密">
             </div>
         </div>
         <div class="layui-form-item">
