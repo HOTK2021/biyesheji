@@ -27,9 +27,9 @@ function selectUserInfo(url){
             ,cols: [[ //表头
                 {field: 'user_id', title: 'ID', sort: true}
                 ,{field: 'username', title: '用户名'}
-                ,{field: 'totalAge', title: '登录时间'}
-                ,{field: 'create_time', title: '出生日期', sort: true}
-                ,{field: 'modify_time', title: '最后登陆', sort: true}
+                ,{field: 'totalAge', title: '住院剩余费用'}
+                ,{field: 'create_time', title: '住院日期', sort: true}
+                ,{field: 'modify_time', title: '预计出院时间', sort: true}
                 ,{field: 'btn',title: '操作',templet:function () {
                     return '<button type="button" class="layui-btn">编辑</button><button type="button" class="layui-btn layui-btn-danger">删除</button>'
                 }}
@@ -49,8 +49,8 @@ function selectUserDie(url){
             ,cols: [[ //表头
                 {field: 'user_id', title: 'ID', sort: true, fixed: 'left'}
                 ,{field: 'username', title: '用户名'}
-                ,{field: 'create_time', title: '出生日期', sort: true}
-                ,{field: 'description', title: '离职原因', sort: true}
+                ,{field: 'create_time', title: '出院日期', sort: true}
+                ,{field: 'description', title: '出院诊断说明', sort: true}
                 ,{field: 'btn',title: '操作',templet:function () {
                         return '<button type="button" class="layui-btn">编辑</button><button type="button" class="layui-btn layui-btn-danger">删除</button>'
                     }}

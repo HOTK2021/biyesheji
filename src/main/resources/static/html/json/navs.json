@@ -1,13 +1,13 @@
 {
 	"userInfo": [
 		{
-			"title": "添加用户",
+			"title": "添加住院用户",
 			"icon": "&#xe61f",
 			"href": "page/userInfo/addUserInfo.html",
 			"spread": false
 		},
 		{
-			"title": "查询所有用户",
+			"title": "查询用户住院费用",
 			"icon": "&#xe615",
 			"href": "page/userInfo/selectUserInfo.html",
 			"spread": false

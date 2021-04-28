@@ -24,9 +24,9 @@ function selectUserInfo(url){
             ,cols: [[ //表头
                 {field: 'user_id', title: 'ID', sort: true}
                 ,{field: 'username', title: '用户名'}
-                ,{field: 'totalAge', title: '剩余寿命'}
-                ,{field: 'create_time', title: '出生日期', sort: true}
-                ,{field: 'last_login_time', title: '最后登陆', sort: true}
+                ,{field: 'totalAge', title: '剩余住院费用'}
+                ,{field: 'create_time', title: '入院时间', sort: true}
+                ,{field: 'last_login_time', title: '最后充值时间', sort: true}
             ]]
         });
 
@@ -43,8 +43,8 @@ function selectUserDie(url){
             ,cols: [[ //表头
                 {field: 'user_id', title: 'ID', sort: true}
                 ,{field: 'username', title: '用户名'}
-                ,{field: 'create_time', title: '出生日期', sort: true}
-                ,{field: 'description', title: '死亡原因', sort: true}
+                ,{field: 'create_time', title: '出院时间', sort: true}
+                ,{field: 'description', title: '出院诊断说明', sort: true}
             ]]
         });
 

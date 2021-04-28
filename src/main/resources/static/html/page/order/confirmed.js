@@ -22,9 +22,9 @@ function selectNotConfirmed(){
                 {type: "numbers"}
                 ,{type:'checkbox'}
                 ,{field: 'user_id', title: 'ID', sort: true}
-                ,{field: 'username', title: '用户名'}
+                ,{field: 'username', title: '护士名'}
                 ,{field: 'ssex', title: '性别'}
-                ,{field: 'dieTime', title: '住院时间',sort: true}
+                ,{field: 'dieTime', title: '负责病房',sort: true}
             ]]
         });
 

@@ -11,7 +11,7 @@ function selectNotApprove(){
         table.render({
             elem: '#approve'
             ,height: 'auto'
-            ,url: '' //数据接口
+            ,url: '/selectApprove' //数据接口
             ,page: true //开启分页
             ,toolbar:'#toolbarDemo'
             ,cols: [[ //表头

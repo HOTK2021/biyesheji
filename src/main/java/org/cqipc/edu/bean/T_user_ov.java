@@ -1,5 +1,6 @@
 package org.cqipc.edu.bean;
 
+import java.beans.Transient;
 import java.math.BigInteger;
 
 public class T_user_ov {
